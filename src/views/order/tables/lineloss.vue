@@ -155,11 +155,11 @@
       dataIndex: 'c',
     },
     {
-      title: '用户名称',
+      title: '台区容量',
       dataIndex: 'd',
     },
     {
-      title: '用户地址',
+      title: '线损率',
       dataIndex: 'e',
     },
     {
@@ -167,7 +167,7 @@
       dataIndex: 'f',
     },
     {
-      title: '原因研判',
+      title: '工单周期',
       dataIndex: 'g',
     },
     {
@@ -178,10 +178,6 @@
       },
     },
     {
-      title: '工单周期',
-      dataIndex: 'i',
-    },
-    {
       title: '处理人',
       dataIndex: 'j',
     },
@@ -189,7 +185,6 @@
       title: '工单时间',
       dataIndex: 'k',
     },
-
   ];
 
   const data = [];
@@ -215,7 +210,7 @@
     data() {
       return {
         form: this.$form.createForm(this, {
-          name: 'collection'
+          name: 'lineloss'
         }),
         data,
         columns,

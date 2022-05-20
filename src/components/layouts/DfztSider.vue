@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider v-model="collapsed" :style="{ overflow: 'auto', <strong></strong> position: 'fixed', left: 0 }"
+  <a-layout-sider v-model="collapsed" :style="{ overflow: 'auto', position: 'fixed', left: 0 }"
     id="warp">
     <div class="logo_warp">
       <div class="logo" />
