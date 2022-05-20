@@ -2,26 +2,41 @@
 	<div class="warp">
 		<div class="header">
 			<div class="left">
-				<a-select default-value="lucy" style="width: 120px" @change="handleChange">
+				<a-select default-value="lucy" @change="handleChange">
 					<a-select-option value="jack">
 						Jack
 					</a-select-option>
 					<a-select-option value="lucy">
 						光明供电营业站
 					</a-select-option>
-					<a-select-option value="disabled" disabled>
+					<a-select-option value="disabled">
 						Disabled
 					</a-select-option>
 					<a-select-option value="Yiminghe">
 						yiminghe
 					</a-select-option>
 				</a-select>
-				<a-select default-value="lucy" style="width: 120px" disabled>
-					<a-select-option value="lucy">
+				<a-select default-value="all" @change="legendChange">
+					<a-select-option value="all">
 						选择全部业务类型
 					</a-select-option>
+					<a-select-option value="服务申请">
+						服务申请
+					</a-select-option>
+					<a-select-option value="意见">
+						意见
+					</a-select-option>
+					<a-select-option value="故障报修">
+						故障报修
+					</a-select-option>
+					<a-select-option value="校核工单">
+						校核工单
+					</a-select-option>
+					<a-select-option value="95598客户催办">
+						95598客户催办
+					</a-select-option>
 				</a-select>
-				<a-select default-value="lucy" style="width: 120px" loading>
+				<a-select default-value="lucy">
 					<a-select-option value="lucy">
 						选择全部业务子类型
 					</a-select-option>
@@ -35,9 +50,8 @@
 				<a-range-picker v-model:value="defaultValue" format="YYYY/MM/DD" />
 			</div>
 		</div>
-		<Charts :legendData="['服务申请', '意见','故障报修','校核工单','95598客户催办']"
-			:xAxisData="['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']" :yAxismin="0" :yAxismax="50"
-			:seriesData="seriesData" id="chart">
+		<Charts :legendData="legend" :xAxisData="xAxis" :yAxismin="0" :yAxismax="50" :seriesData="seriesData"
+			id="chart">
 			<template>
 				<div id='chart'></div>
 			</template>
@@ -54,20 +68,33 @@
 		data() {
 			return {
 				defaultValue: [],
+				legend: ['服务申请', '意见', '故障报修', '校核工单', '95598客户催办'],
+				xAxis: [],
 				seriesData: [
 					[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 12.2, 32.6, 20.0, 6.4, 3.3],
-					[2.6, 5.9, 9.0, 26.4, 28.7, 7.7, 15.6, 18.2, 48.7, 18.8, 6.0, 2.3]
+					[2.6, 5.9, 9.0, 26.4, 28.7, 7.7, 15.6, 18.2, 48.7, 18.8, 6.0, 2.3],
+					[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 12.2, 32.6, 20.0, 6.4, 3.3],
+					[2.6, 5.9, 9.0, 26.4, 28.7, 7.7, 15.6, 18.2, 48.7, 18.8, 6.0, 2.3],
+					[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 12.2, 32.6, 20.0, 6.4, 3.3],
 				]
 			};
 		},
 		components: {
 			Charts
 		},
-		mounted() {
-			this.eachOfWeek()
+		created() {
+			this.xAxis = this.eachOfMonth()
 		},
 		methods: {
 			moment,
+			legendChange(e) {
+				if (e === 'all') {
+					this.legend = ['服务申请', '意见', '故障报修', '校核工单', '95598客户催办']
+				} else {
+					this.legend = [e]
+				}
+				console.log(this.legend)
+			},
 			handleChange(value) {
 				console.log(`selected ${value}`);
 			},
@@ -98,17 +125,13 @@
 			eachOfWeek() {
 				// 从本月开始的每个周
 				let start = moment().startOf('month')
-				let i = 0
-				console.log(start.weekday(i).format('MM/DD'))
+				let end
 				const res = []
-				while (start.isBefore(moment(), 'days')) {
-					// console.log(startDate.format('MM/DD'), endDate.format('MM/DD'))
-					res.push([start.weekday(i).format('MM/DD'), start.weekday(i + 7).format('MM/DD')])
-					// break
-					i = i + 7
-					console.log(res)
+				while (start.isBefore(moment())) {
+					end = start
+					res.push(`${start.weekday(0).format('MM月DD日')}至${end.weekday(7).isBefore(moment()) ? start
+						.format('MM月DD日') : '今'}`)
 				}
-				// console.log(res)
 				return res
 			},
 		},

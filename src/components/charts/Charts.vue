@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- <div id='chart'></div> -->
-    <!-- <div id='main'></div> -->
     <slot></slot>
   </div>
 </template>
