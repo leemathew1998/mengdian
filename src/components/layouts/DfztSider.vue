@@ -13,27 +13,27 @@
         <img src="@/assets/order.svg" alt="" class="svg" />
         <span>业务工单</span>
       </a-menu-item>
-      <a-menu-item key="3">
+      <a-menu-item key="/overhaul">
         <img src="@/assets/u30.svg" alt="" class="svg" />
         <span>检修管理</span>
       </a-menu-item>
-      <a-menu-item key="4">
+      <a-menu-item key="/antitheft">
         <img src="@/assets/u30.svg" alt="" class="svg" />
         <span>反窃查违</span>
       </a-menu-item>
-      <a-menu-item key="5">
+      <a-menu-item key="/extend">
         <img src="@/assets/u20.svg" alt="" class="svg" />
         <span>业扩报装</span>
       </a-menu-item>
-      <a-menu-item key="6">
+      <a-menu-item key="/achievements">
         <img src="@/assets/u142.svg" alt="" class="svg" />
         <span>绩效管理</span>
       </a-menu-item>
-      <a-menu-item key="7">
+      <a-menu-item key="/collection">
         <img src="@/assets/u146.svg" alt="" class="svg" />
         <span>采集数据</span>
       </a-menu-item>
-      <a-menu-item key="8">
+      <a-menu-item key="/basic">
         <img src="@/assets/u146.svg" alt="" class="svg" />
         <span>基础服务</span>
       </a-menu-item>

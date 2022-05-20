@@ -1,61 +1,7 @@
 <template>
 	<div class="warp">
 		<div class="form">
-			<a-form layout="inline" :form="form" @submit="handleSubmit">
-				<!-- 工单编号 -->
-				<a-form-item>
-					<a-input v-decorator="['id', { rules: [{ message: '请输入工单编号' }] }]" placeholder="请输入工单编号">
-					</a-input>
-				</a-form-item>
-				<!-- 台区名称 -->
-				<a-form-item>
-					<a-select v-decorator="[
-              'taiquname',
-              { rules: [{ message: '请选择台区名称' }] },
-            ]" placeholder="请选择台区名称" :style="{ width: '200px' }">
-						<a-select-option value="male"> male </a-select-option>
-						<a-select-option value="female"> female </a-select-option>
-					</a-select>
-				</a-form-item>
-				<!-- 工单状态 -->
-				<a-form-item>
-					<a-select v-decorator="['state', { rules: [{ message: '请选择工单状态' }] }]" placeholder="请选择工单状态"
-						:style="{ width: '200px' }">
-						<a-select-option value="male"> 完成 </a-select-option>
-						<a-select-option value="female"> 未完成 </a-select-option>
-					</a-select>
-				</a-form-item>
-				<!-- 用户名称 -->
-				<a-form-item>
-					<a-input v-decorator="[
-              'username',
-              { rules: [{ message: '请输入用户名称' }] },
-            ]" placeholder="请输入用户名称">
-					</a-input>
-				</a-form-item>
-				<!-- 开始时间 -->
-				<a-form-item>
-					<a-date-picker v-decorator="[
-              'starttime',
-              { rules: [{ message: '请输入开始时间' }] },
-            ]" />
-				</a-form-item>
-
-				<!-- 结束时间 -->
-				<a-form-item>
-					<a-date-picker v-decorator="[
-              'endtime',
-              { rules: [{ message: '请输入结束时间' }] },
-            ]" />
-				</a-form-item>
-
-				<a-form-item>
-					<a-button type="primary" html-type="submit"> 查询 </a-button>
-				</a-form-item>
-				<a-form-item>
-					<a-button type="primary" html-type="submit"> 导出 </a-button>
-				</a-form-item>
-			</a-form>
+			<SearchForm />
 		</div>
 		<Tables @changeSelectedRowKeys="changeSelectedRowKeys" @clickRow="clickRows" :columns="columns" :data="data"
 			operationName="派单">
@@ -113,6 +59,7 @@
 	import Tables from "@/components/tables/Tables";
 	import Modal from "@/components/modal/Modal";
 	import Drawer from "@/components/drawer/Drawer";
+	import SearchForm from '@/components/searchform/SearchForm'
 	const columns = [{
 			title: "工单编号",
 			dataIndex: "a",
@@ -179,9 +126,6 @@
 	export default {
 		data() {
 			return {
-				form: this.$form.createForm(this, {
-					name: "metering",
-				}),
 				data,
 				columns,
 				selectedRowKeys: [], // Check here to configure the default column
@@ -195,14 +139,11 @@
 			Tables,
 			Modal,
 			Drawer,
+			SearchForm
 		},
 		computed: {},
 
-		mounted() {
-			this.$nextTick(() => {
-				this.form.validateFields();
-			});
-		},
+
 		methods: {
 			changeSelectedRowKeys(e) {
 				this.selectedRowKeys = e;
@@ -212,15 +153,7 @@
 				this.clickRow = e;
 				this.drawerVisible = true;
 			},
-			handleSubmit(e) {
-				e.preventDefault();
-				this.form.validateFields((err, values) => {
-					console.log(values);
-					if (!err) {
-						console.log("Received values of form: ", values);
-					}
-				});
-			},
+
 			handleChange(value) {
 				console.log(`selected ${value}`);
 			},
