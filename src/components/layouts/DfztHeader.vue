@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header :style="{ position: 'fixed', zIndex: 1,background: '#fff', padding: 0 ,height:'100px'}" class="warp">
+  <a-layout-header :style="{ position: 'fixed', zIndex: 1,background: '#fff', padding: '22px' ,height:'100px'}" class="warp">
     <div class='left'>
       <img src="@/assets/u506.png" alt="" class="img">
       <div class="text">

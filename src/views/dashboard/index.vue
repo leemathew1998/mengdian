@@ -55,7 +55,7 @@
 
     .Indicators,
     .Overview {
-      height: 300px;
+      // height: 400px;
       flex: 1
     }
   }

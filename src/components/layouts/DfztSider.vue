@@ -73,7 +73,6 @@
   #warp {
     background-color: #fff;
     width: 80px !important;
-    // display: flex;
 
     .logo_warp {
       flex: 1;
@@ -96,13 +95,13 @@
     }
 
     .sider_menu {
+		// 侧边栏高度问题就在这里！！！
       // height: calc(100vh - 150px);
 
       background-color: #010827;
       width: 75px;
       display: flex;
       flex-direction: column;
-
 
       .ant-menu-item {
         flex: 1;

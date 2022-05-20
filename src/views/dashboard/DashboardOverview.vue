@@ -7,26 +7,20 @@
 		</div>
 		<div class="right">
 			<div class="rowOne">
-				<div v-for="item in dataRowOne" :key='item.title' class="item"
+				<div v-for="item in dataRowOne" :key='item.title' class="itemRowOne"
 					:style="{backgroundColor:item.backgroundColor}">
-
 					<img class="item-left" :src="item.img" alt="">
-
 					<div class="item-right">
-
 						<div>{{item.title}}</div>
 						<div>{{item.number}}</div>
 					</div>
 				</div>
 			</div>
 			<div class="rowTwo">
-				<div v-for="item in dataRowTwo" :key='item.title' class="item"
+				<div v-for="item in dataRowTwo" :key='item.title' class="itemRowTwo"
 					:style="{backgroundColor:item.backgroundColor}">
-
 					<img class="item-left" :src="item.img" alt="">
-
 					<div class="item-right">
-
 						<div>{{item.title}}</div>
 						<div>{{item.number}}</div>
 					</div>
@@ -113,31 +107,33 @@
 			.rowTwo {
 				flex: 1;
 				display: flex;
-
-				.item {
-					flex: 1;
-					width: 120px;
-					height: 120px;
-					margin-left: 10px;
-					margin-bottom: 10px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					border-radius: 10px;
-
-					.item-left {
-						width: 40px;
-						height: 40px;
-					}
-				}
-
 			}
-
-
+			.itemRowOne {
+				flex: 1;
+				width: 120px;
+				height: 120px;
+				margin-left: 10px;
+				margin-bottom: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 10px;
+			}
+			.item-left {
+				width: 40px;
+				height: 40px;
+			}
+			.itemRowTwo {
+				flex: 1;
+				width: 120px;
+				height: 120px;
+				margin-left: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 10px;
+			}
 		}
 
-		// .right-item:nth-child(n+4) {
-		// 	margin-bottom: 0px;
-		// }
 	}
 </style>
