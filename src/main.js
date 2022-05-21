@@ -1,6 +1,6 @@
 /** init domain config */
 import './config'
-
+import '@/assets/less/common.less'
 import Vue from 'vue'
 import App from './App.vue'
 import Storage from 'vue-ls'

@@ -9,45 +9,49 @@
 				<a-button @click.stop="operation(slotProps.table_key)">派单</a-button>
 			</template>
 		</Tables>
-		<Modal :visible="modalVisible" @changeModal="modalVisible = !modalVisible" :selectItem="selectItem">
+		<Modal :visible="modalVisible" modalName="派单" @changeModal="modalVisible = !modalVisible" :selectItem="selectItem">
 			<template slot="topSlot">
 				<div class="title">工单信息</div>
-				<table border="1px">
-					<tr>
-						<th>工单编号</th>
-						<th>{{ selectItem.a }}</th>
-						<th>用户电话</th>
-						<th>{{ selectItem.b }}</th>
-					</tr>
-					<tr>
-						<th>台区经理名称</th>
-						<th>{{ selectItem.c }}</th>
-						<th>台区名称</th>
-						<th>{{ selectItem.d }}</th>
-					</tr>
-					<tr>
-						<th>用户名称</th>
-						<th>{{ selectItem.e }}</th>
-						<th>用户地址</th>
-						<th>{{ selectItem.f }}</th>
-					</tr>
-					<tr>
-						<th>分析结果</th>
-						<th>{{ selectItem.g }}</th>
-						<th>说明</th>
-						<th>{{ selectItem.h }}</th>
-					</tr>
-				</table>
+				<div class="topcontent">
+					<table border="1px solid #797979">
+						<tr>
+							<th class="name">工单编号</th>
+							<th>{{ selectItem.a }}</th>
+							<th class="name">用户电话</th>
+							<th>{{ selectItem.b }}</th>
+						</tr>
+						<tr>
+							<th class="name">台区经理名称</th>
+							<th>{{ selectItem.c }}</th>
+							<th class="name">台区名称</th>
+							<th>{{ selectItem.d }}</th>
+						</tr>
+						<tr>
+							<th class="name">用户名称</th>
+							<th>{{ selectItem.e }}</th>
+							<th class="name">用户地址</th>
+							<th>{{ selectItem.f }}</th>
+						</tr>
+						<tr>
+							<th class="name">分析结果</th>
+							<th>{{ selectItem.g }}</th>
+							<th class="name">说明</th>
+							<th>{{ selectItem.h }}</th>
+						</tr>
+					</table>
+				</div>
 			</template>
 			<template slot="mainSlot">
 				<div class="title">派单信息</div>
-				<div>处理人员</div>
-				<a-select default-value="lucy" style="width: 120px" @change="handleChange">
-					<a-select-option value="jack"> Jack </a-select-option>
-					<a-select-option value="lucy"> Lucy </a-select-option>
-					<a-select-option value="disabled"> Disabled </a-select-option>
-					<a-select-option value="Yiminghe"> yiminghe </a-select-option>
-				</a-select>
+				<div class="maincontent">
+					<div>处理人员</div>
+					<a-select default-value="lucy" style="width: 120px" @change="handleChange">
+						<a-select-option value="jack"> Jack </a-select-option>
+						<a-select-option value="lucy"> Lucy </a-select-option>
+						<a-select-option value="disabled"> Disabled </a-select-option>
+						<a-select-option value="Yiminghe"> yiminghe </a-select-option>
+					</a-select>
+				</div>
 			</template>
 		</Modal>
 		<Drawer :visible="drawerVisible" @changeDrawer="drawerVisible = !drawerVisible" :clickRow="clickRow"
@@ -189,5 +193,4 @@
 			margin: 10px 0;
 		}
 	}
-
 </style>

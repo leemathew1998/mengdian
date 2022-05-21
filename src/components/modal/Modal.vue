@@ -1,7 +1,7 @@
 <template>
 
-  <a-modal v-model="modalVisible" @ok="handleOk" @cancel="handleCancel" title="派单" okText="派单">
-    <div class="warp">
+  <a-modal v-model="modalVisible" @ok="handleOk" @cancel="handleCancel" :title="modalName" :okText="modalName">
+    <div class="modalwarp">
       <div class='top'>
         <slot name="topSlot"></slot>
       </div>
@@ -25,7 +25,11 @@
       },
       selectItem: {
         required: true
-      }
+      },
+	  modalName:{
+		  type:String,
+		  default:''
+	  }
     },
     data() {
       return {
@@ -47,9 +51,7 @@
         this.modalVisible = !this.modalVisible
         this.$emit("changeModal", false)
       },
-
-
-
     },
   };
 </script>
+
