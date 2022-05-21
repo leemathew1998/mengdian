@@ -133,12 +133,9 @@
 		display: flex;
 		flex-direction: column;
 
-		.header {
-			font-weight: 700;
-
-			span {
-				font-weight: 400;
-			}
+		.form {
+			// width: 90%;
+			margin: 10px 0;
 		}
 	}
 </style>

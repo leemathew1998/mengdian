@@ -33,38 +33,41 @@
 				</a-input>
 			</a-form-item>
 			<!-- 开始时间 -->
-			<a-form-item>
+			<a-form-item style="margin-right: 0;">
 				<a-date-picker v-decorator="[
 		  'starttime',
-		  { rules: [{ message: '请输入开始时间' }] },
-		]" />
+		]" placeholder="请输入开始时间" />
 			</a-form-item>
-
+			<span style="font-weight: 700;">~</span>
 			<!-- 结束时间 -->
 			<a-form-item>
 				<a-date-picker v-decorator="[
 		  'endtime',
-		  { rules: [{ message: '请输入结束时间' }] },
-		]" />
+		]" placeholder="请输入结束时间" />
 			</a-form-item>
 
 			<a-form-item>
-				<a-button type="primary" html-type="submit"> 查询 </a-button>
+				<a-button type="primary" html-type="submit">查询</a-button>
 			</a-form-item>
 			<a-form-item>
-				<a-button type="primary" html-type="submit"> 导出 </a-button>
+				<a-button @click="exportExcel"> 导出 </a-button>
 			</a-form-item>
 		</a-form>
 	</div>
 </template>
 
 <script>
+	var XLSX = require('xlsx');
 	export default {
 		data() {
 			return {
 				form: this.$form.createForm(this, {
-					name: "collection",
+					name: "searchform",
 				}),
+				tableData: [
+					['表', '头', '数', '据'],
+					[1, 2, 3, 4]
+				]
 			}
 		},
 		mounted() {
@@ -75,13 +78,34 @@
 		methods: {
 			handleSubmit(e) {
 				e.preventDefault();
+
 				this.form.validateFields((err, values) => {
-					console.log(values);
-					if (!err) {
-						console.log("Received values of form: ", values);
-					}
+					// console.log(values);
+					this.$emit('formData', values)
+					// if (!err) {
+					// 	console.log("Received values of form: ", values);
+					// }
 				});
 			},
+			exportExcel() {
+				var that = this
+				var titleArr = Object.keys(that.tableData[0]);
+
+				let tableData = [
+					titleArr,
+				] // 表格表头
+				this.tableData.forEach(item => {
+					let rowData = []
+					titleArr.map((key, index) => {
+						rowData.push(item[key])
+					})
+					tableData.push(rowData)
+				})
+				let ws = XLSX.utils.aoa_to_sheet(tableData)
+				let wb = XLSX.utils.book_new()
+				XLSX.utils.book_append_sheet(wb, ws, '数据') // 工作簿名称
+				XLSX.writeFile(wb, '数据.xlsx') // 保存的文件名
+			}
 		}
 	}
 </script>
@@ -91,5 +115,6 @@
 	.ant-form-inline {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 </style>

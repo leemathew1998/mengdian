@@ -1,10 +1,10 @@
 <template>
 	<div class="warp">
 		<div class="form">
-			<SearchForm />
+			<SearchForm @formData="solveformData" />
 		</div>
 		<Tables @changeSelectedRowKeys="changeSelectedRowKeys" @clickRow="clickRows" :columns="columns" :data="data"
-			operationName="派单">
+			operationName="派单" :tableLoading="tableLoading">
 			<template v-slot="slotProps">
 				<a-button @click.stop="operation(slotProps.table_key)">派单</a-button>
 			</template>
@@ -137,6 +137,7 @@
 				drawerVisible: false,
 				selectItem: {},
 				clickRow: {},
+				tableLoading: false
 			};
 		},
 		components: {
@@ -149,6 +150,13 @@
 
 
 		methods: {
+			solveformData(e) {
+				console.log(e)
+				this.tableLoading = true
+				setTimeout(() => {
+					this.tableLoading = false
+				}, 2000)
+			},
 			changeSelectedRowKeys(e) {
 				this.selectedRowKeys = e;
 			},
@@ -182,9 +190,4 @@
 		}
 	}
 
-	.ant-form,
-	.ant-form-inline {
-		display: flex;
-		justify-content: space-between;
-	}
 </style>

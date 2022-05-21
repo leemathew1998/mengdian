@@ -5,7 +5,7 @@
 		</div>
 		<div class="table">
 			<Tables @changeSelectedRowKeys="changeSelectedRowKeys" @clickRow="clickRows" :columns="columns" :data="data"
-				operationName="">
+				operationName="" :scroll="{x:2000}">
 				<!-- 			<template v-slot="slotProps">
 					<a-button @click.stop="operation(slotProps.table_key)">转派</a-button>
 				</template> -->
@@ -155,12 +155,10 @@
 		display: flex;
 		flex-direction: column;
 
-		.header {
-			font-weight: 700;
-
-			span {
-				font-weight: 400;
-			}
+		.form {
+			// width: 90%;
+			margin: 10px 0;
 		}
+
 	}
 </style>

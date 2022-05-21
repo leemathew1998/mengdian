@@ -5,8 +5,9 @@
 			<a-button @click="thismonth">本月</a-button>
 			<a-range-picker v-model:value="defaultValue" format="YYYY/MM/DD" />
 		</div>
-		<Charts :legendData="['待处理', '已处理']" :xAxisData="['采集运维', '计量运维', '线损治理', '费控复电', '电费回收', '电费发行', '优质服务','主动运维','主动抢修']"
-			:yAxismin="0" :yAxismax="50" :seriesData="seriesData" id="main">
+		<Charts :legendData="['待处理', '已处理']"
+			:xAxisData="['采集运维', '计量运维', '线损治理', '费控复电', '电费回收', '电费发行', '优质服务','主动运维','主动抢修']" :yAxismin="0"
+			:yAxismax="50" :seriesData="seriesData" id="main">
 			<template>
 				<div id='main'></div>
 			</template>
@@ -18,17 +19,12 @@
 <script>
 	import moment from 'moment';
 	import Charts from '@/components/charts/Charts'
-	// console.log(moment().startOf('month').format('YYYY/MM/DD'))
-
 	export default {
 		name: 'DataboardFinish',
 		data() {
 			return {
 				defaultValue: [],
-				seriesData: [
-					[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 12.2, 32.6, 20.0, 6.4, 3.3,10,20],
-					[2.6, 5.9, 9.0, 26.4, 28.7, 7.7, 15.6, 18.2, 48.7, 18.8, 6.0, 2.3,30,20]
-				]
+				seriesData: []
 			};
 		},
 		components: {
@@ -36,17 +32,30 @@
 		},
 		mounted() {
 			// console.log(this.startOfOneWeek())
+			this.solveData()
 		},
 		methods: {
 			moment,
+			solveData() {
+				this.seriesData = []
+				for (var i = 0; i < 2; i++) {
+					let tem = []
+					for (var j = 0; j < 9; j++) {
+						tem.push(j + Math.floor(Math.random() * 15)+2)
+					}
+					this.seriesData.push(tem)
+				}
+			},
 			latelyOneWeek() {
 				this.defaultValue = [moment(moment().add(-6, 'days').format('YYYY/MM/DD'), "YYYY/MM/DD"), moment(moment()
 					.format(
 						'YYYY/MM/DD'), "YYYY/MM/DD")]
+				this.solveData()
 			},
 			thismonth() {
 				this.defaultValue = [moment(moment().startOf('month').format('YYYY/MM/DD'), "YYYY/MM/DD"), moment(moment()
 					.format('YYYY/MM/DD'), "YYYY/MM/DD")]
+				this.solveData()
 			},
 		},
 
