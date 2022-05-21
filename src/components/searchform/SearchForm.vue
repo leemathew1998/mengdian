@@ -49,6 +49,7 @@
 			<a-form-item>
 				<a-button type="primary" html-type="submit">查询</a-button>
 			</a-form-item>
+			<slot name="import"></slot>
 			<a-form-item>
 				<a-button @click="exportExcel"> 导出 </a-button>
 			</a-form-item>
@@ -101,6 +102,7 @@
 					})
 					tableData.push(rowData)
 				})
+				console.log(this.tableData)
 				let ws = XLSX.utils.aoa_to_sheet(tableData)
 				let wb = XLSX.utils.book_new()
 				XLSX.utils.book_append_sheet(wb, ws, '数据') // 工作簿名称

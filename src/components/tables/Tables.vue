@@ -2,7 +2,7 @@
 	<div class="warp">
 		<a-table :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }" :columns="columns"
 			:data-source="data" bordered @change="pagechange" :customRow="handleClickRow" :loading="tableLoading"
-			:scroll="scroll">
+			>
 			<!-- <template > -->
 			<div slot="orderStatus" slot-scope="text, record" class='orderStatus'> {{text}}</div>
 			<!-- </template> -->
@@ -35,9 +35,6 @@
 			tableLoading: {
 				type: Boolean
 			},
-			scroll:{
-				default:false
-			}
 		},
 		data() {
 			return {

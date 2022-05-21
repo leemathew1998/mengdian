@@ -39,6 +39,11 @@ export const constantRouterMap = [{
 			component: () => import('@/views/dashboard/index')
 		},
 		{
+			path: '/test',
+			name: 'test',
+			component: () => import('@/views/test')
+		},
+		{
 			path: '/order',
 			name: 'order',
 			redirect: '/order/collection',
@@ -96,8 +101,7 @@ export const constantRouterMap = [{
 			path: '/achievements',
 			name: 'achievements',
 			component: () => import('@/views/achievements/index')
-		},
-		, {
+		}, , {
 			path: '/collection',
 			name: 'collection',
 			component: () => import('@/views/collection/index')
