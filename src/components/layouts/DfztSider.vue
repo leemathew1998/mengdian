@@ -96,7 +96,7 @@
 
     .sider_menu {
 		// 侧边栏高度问题就在这里！！！
-      // height: calc(100vh - 150px);
+      height: calc(100vh - 150px);
 
       background-color: #010827;
       width: 75px;
