@@ -5,7 +5,7 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.png" class="logo" alt="logo">
-            <span class="title">东方众通项目</span>
+            <span class="title">国家电网</span>
           </a>
         </div>
         <div class="desc">
