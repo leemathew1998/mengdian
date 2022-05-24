@@ -86,7 +86,6 @@
 						</a-select>
 					</div>
 				</div>
-
 			</template>
 		</Modal>
 		<Drawer :visible="drawerVisible" @changeDrawer="drawerVisible=!drawerVisible" :clickRow="clickRow"

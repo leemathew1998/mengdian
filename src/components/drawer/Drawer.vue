@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="warp">
     <a-drawer title="采集运维工单详情" :width="720" :visible="visible" :body-style="{ paddingBottom: '80px' }" @close="onClose">
-      <a-tabs default-active-key="1">
+      <a-tabs default-active-key="1" class="drawerTabs">
         <a-tab-pane key="1" tab="工单信息">
           <OrderInfo :clickRow="clickRow" :columns="columns" />
         </a-tab-pane>
@@ -9,7 +9,7 @@
           <Steps></Steps>
         </a-tab-pane>
         <a-tab-pane key="3" tab="数据来源">
-        <Source :columns="columns"/>
+        <Source :clickRow="clickRow"  :columns="columns"/>
         </a-tab-pane>
       </a-tabs>
     </a-drawer>
@@ -62,6 +62,9 @@
 
 <style lang="less" scoped>
   .warp {
-    padding: 10px;
+    // background-color: red;
+	.drawerTabs{
+		display: flex;
+	}
   }
 </style>

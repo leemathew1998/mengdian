@@ -9,45 +9,71 @@
 				<a-button @click.stop="operation(slotProps.table_key)">转派</a-button>
 			</template>
 		</Tables>
-		<Modal :visible="modalVisible" @changeModal="modalVisible = !modalVisible" :selectItem="selectItem">
+		<Modal :visible="modalVisible" @changeModal="modalVisible = !modalVisible" :selectItem="selectItem"
+			:modalRadioOptions="modalRadioOptions">
 			<template slot="topSlot">
-				<div class="title">工单信息</div>
-				<table border="1px">
-					<tr>
-						<th>工单编号</th>
-						<th>{{ selectItem.a }}</th>
-						<th>用户电话</th>
-						<th>{{ selectItem.b }}</th>
-					</tr>
-					<tr>
-						<th>台区经理名称</th>
-						<th>{{ selectItem.c }}</th>
-						<th>台区名称</th>
-						<th>{{ selectItem.d }}</th>
-					</tr>
-					<tr>
-						<th>用户名称</th>
-						<th>{{ selectItem.e }}</th>
-						<th>用户地址</th>
-						<th>{{ selectItem.f }}</th>
-					</tr>
-					<tr>
-						<th>分析结果</th>
-						<th>{{ selectItem.g }}</th>
-						<th>说明</th>
-						<th>{{ selectItem.h }}</th>
-					</tr>
-				</table>
+				<a-descriptions title="工单信息" bordered>
+					<a-descriptions-item label="工单编号" :span="2">
+						{{ selectItem.a }}
+					</a-descriptions-item>
+					<a-descriptions-item label="用户电话" :span="2">
+						{{ selectItem.b }}
+					</a-descriptions-item>
+					<a-descriptions-item label="台区经理名称" :span="2">
+						{{ selectItem.c }}
+					</a-descriptions-item>
+					<a-descriptions-item label="台区名称" :span="2">
+						{{ selectItem.d }}
+					</a-descriptions-item>
+					<a-descriptions-item label="用户名称" :span="2">
+						{{ selectItem.e }}
+					</a-descriptions-item>
+					<a-descriptions-item label="用户地址" :span="2">
+						{{ selectItem.f }}
+					</a-descriptions-item>
+					<a-descriptions-item label="分析结果" :span="2">
+						{{ selectItem.g }}
+					</a-descriptions-item>
+					<a-descriptions-item label="说明" :span="2">
+						{{ selectItem.h }}
+					</a-descriptions-item>
+				</a-descriptions>
 			</template>
 			<template slot="mainSlot">
-				<div class="title">派单信息</div>
-				<div>处理人员</div>
-				<a-select default-value="lucy" style="width: 120px" @change="handleChange">
-					<a-select-option value="jack"> Jack </a-select-option>
-					<a-select-option value="lucy"> Lucy </a-select-option>
-					<a-select-option value="disabled"> Disabled </a-select-option>
-					<a-select-option value="Yiminghe"> yiminghe </a-select-option>
-				</a-select>
+				<a-descriptions title="现场情况" bordered>
+					<a-descriptions-item label="现场描述" :span="2">
+						设备现场反向
+					</a-descriptions-item>
+					<a-descriptions-item label="反向有功示值大于0的原因" :span="2">
+						电梯表
+					</a-descriptions-item>
+					<a-descriptions-item label="现场处理状态" :span="2">
+						已解决
+					</a-descriptions-item>
+					<a-descriptions-item label="处理时间" :span="2">
+						2020-05-05 12:23:45
+					</a-descriptions-item>
+					<a-descriptions-item label="现场照片" :span="2">
+						<img src="@/assets/overview.svg" alt="" style="width: 50px;">
+						<img src="@/assets/overview.svg" alt="" style="width: 50px;">
+						<img src="@/assets/overview.svg" alt="" style="width: 50px;">
+					</a-descriptions-item>
+				</a-descriptions>
+			</template>
+			<template slot="footerSlot">
+				<div class="title" style="margin-bottom: 20px;margin-top: 10px; color: rgba(0, 0, 0, 0.85);font-weight: bold;font-size: 16px;line-height: 1.5;">工单审核</div>
+				<div class="footercontent">
+					<a-radio-group :options="['通过', '不通过']" default-value="通过" @change="modalRadioChange" />
+					<div v-if="modalRadioOptions == '不通过'">
+						<div class="name">处理人员</div>
+						<a-select default-value="lucy" style="width: 120px" @change="handleChange">
+							<a-select-option value="jack"> Jack </a-select-option>
+							<a-select-option value="lucy"> Lucy </a-select-option>
+							<a-select-option value="disabled"> Disabled </a-select-option>
+							<a-select-option value="Yiminghe"> yiminghe </a-select-option>
+						</a-select>
+					</div>
+				</div>
 			</template>
 		</Modal>
 		<Drawer :visible="drawerVisible" @changeDrawer="drawerVisible = !drawerVisible" :clickRow="clickRow"
@@ -143,6 +169,7 @@
 				drawerVisible: false,
 				selectItem: {},
 				clickRow: {},
+				modalRadioOptions: '通过'
 			};
 		},
 		components: {
@@ -155,6 +182,9 @@
 
 
 		methods: {
+			modalRadioChange(e) {
+				this.modalRadioOptions = e.target.value
+			},
 			changeSelectedRowKeys(e) {
 				this.selectedRowKeys = e;
 			},
