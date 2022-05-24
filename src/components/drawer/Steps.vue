@@ -17,7 +17,7 @@
 		<div class="steps">
 			<div class="left">
 				<span class="time">2022-03-04 12:22:43</span>
-				<span class="info">处理人：台区经理张飞</span>
+				<span class="info">处理人：经理张飞</span>
 			</div>
 			<div class="main">
 				<div class="circular"></div>

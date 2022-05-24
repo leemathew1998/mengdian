@@ -11,7 +11,9 @@
       operationName="派单"
     >
       <template v-slot="slotProps">
-        <a-button size="small" @click.stop="operation(slotProps.table_key)">转派</a-button>
+        <a-button size="small" @click.stop="operation(slotProps.table_key)"
+          >转派</a-button
+        >
       </template>
     </Tables>
     <!-- <a-table :columns="columns" :data-source="data" :scroll="{ x: 1300 }">
@@ -54,17 +56,19 @@
       </template>
       <template slot="mainSlot">
         <div class="title">派单信息</div>
-        <div style="margin-right: 20px">处理人员</div>
-        <a-select
-          default-value="lucy"
-          style="width: 120px"
-          @change="handleChange"
-        >
-          <a-select-option value="jack"> Jack </a-select-option>
-          <a-select-option value="lucy"> Lucy </a-select-option>
-          <a-select-option value="disabled"> Disabled </a-select-option>
-          <a-select-option value="Yiminghe"> yiminghe </a-select-option>
-        </a-select>
+        <div class="maincontent">
+          <div style="margin-right: 20px">处理人员</div>
+          <a-select
+            default-value="lucy"
+            style="width: 120px"
+            @change="handleChange"
+          >
+            <a-select-option value="jack"> Jack </a-select-option>
+            <a-select-option value="lucy"> Lucy </a-select-option>
+            <a-select-option value="disabled"> Disabled </a-select-option>
+            <a-select-option value="Yiminghe"> yiminghe </a-select-option>
+          </a-select>
+        </div>
       </template>
     </Modal>
     <Drawer
@@ -72,8 +76,8 @@
       @changeDrawer="drawerVisible = !drawerVisible"
       :clickRow="clickRow"
       :columns="columns"
-    /> 
-</div>
+    />
+  </div>
 </template>
 
 <script>
@@ -85,56 +89,56 @@ const columns = [
   {
     title: "工单编号",
     dataIndex: "a",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "台区名称",
     dataIndex: "b",
-	ellipsis: true,
-	width:100
+    ellipsis: true,
+    width: 100,
   },
   {
     title: "台区经理",
     dataIndex: "c",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "用户名称",
     dataIndex: "d",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "用户地址",
     dataIndex: "e",
-	ellipsis: true,
-	width:100
+    ellipsis: true,
+    width: 100,
   },
   {
     title: "负电失败时间",
     dataIndex: "f",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "负电失败时长",
     dataIndex: "g",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "用电状态",
     dataIndex: "h",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "工单周期",
     dataIndex: "i",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "工单状态",
@@ -142,28 +146,28 @@ const columns = [
     scopedSlots: {
       customRender: "orderStatus",
     },
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "处理人",
     dataIndex: "j",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
   {
     title: "工单时间",
     dataIndex: "k",
-	ellipsis: true,
-	width:150
+    ellipsis: true,
+    width: 150,
   },
-//   {
-//     title: '操作',
-//     key: 'operation',
-// 	dataIndex: 'operation',
+  //   {
+  //     title: '操作',
+  //     key: 'operation',
+  // 	dataIndex: 'operation',
 
-//     scopedSlots: { customRender: 'action' },
-//   },
+  //     scopedSlots: { customRender: 'action' },
+  //   },
 ];
 
 const data = [];
@@ -183,8 +187,6 @@ for (let i = 0; i < 46; i++) {
     k: 32,
   });
 }
-
-
 
 export default {
   data() {
@@ -228,16 +230,16 @@ export default {
 
 <style lang="less" scoped>
 .warp {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
 
   .form {
     // width: 100%;
     margin: 10px 0;
-	display: flex;
-	justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
   }
 }
 .title {
