@@ -59,7 +59,10 @@
       <a-form-item>
         <a-button type="primary" html-type="submit">查询</a-button>
       </a-form-item>
-      <slot name="import"></slot>
+      <a-form-item>
+        <slot name="import"></slot>
+      </a-form-item>
+      
       <a-form-item>
         <a-button @click="exportExcel"> 导出 </a-button>
       </a-form-item>
