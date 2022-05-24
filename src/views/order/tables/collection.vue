@@ -4,7 +4,7 @@
 			<SearchForm @formData="solveformData">
 
 				<template slot="import">
-					<a-upload name="temfile" action="http://1.15.125.141:3007/uploadavatar" @change="imporFile">
+					<a-upload name="temfile" @change="imporFile">
 						<a-button>
 							<a-icon type="upload" /> 上传
 						</a-button>
@@ -185,10 +185,10 @@
 			async imporFile(info) {
 				// 本组件有自己的上传方式，不需要手动上传啦！
 				if (info.file.status !== 'uploading') {
-					// let formData = new FormData()
-					// formData.append('files', info.file.originFileObj)
-					// const res = await importFile(formData)
-					// console.log(res);
+					let formData = new FormData()
+					formData.append('files', info.file.originFileObj)
+					const res = await importFile(formData)
+					console.log(res);
 					this.$message.success(`${info.file.name} file uploaded successfully`);
 				}
 			},
