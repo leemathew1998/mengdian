@@ -6,35 +6,36 @@
         <th>{{item}}</th>
       </tr>
     </table>
-    <!-- <a-descriptions v-for="(item,index) in clickRow" :key="index" bordered>
-          <a-descriptions-item label=item :span="2">
-            {{ 1}}
-          </a-descriptions-item>
+    <!-- <a-descriptions v-for="(item, index, i) in clickRow" :key="index" bordered>
+      <a-descriptions-item :span="2">
+        <span slot="label">{{ columns[i].title }}</span>
+        {{ item }}
+      </a-descriptions-item>
     </a-descriptions> -->
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'OrderInfo',
-    props: {
-      clickRow: {
-        type: Object,
-        required: true
-      },
-      columns: {
-        type: Array,
-        required: true
-      }
+export default {
+  name: "OrderInfo",
+  props: {
+    clickRow: {
+      type: Object,
+      required: true,
     },
-    data() {
-      return {
-      }
+    columns: {
+      type: Array,
+      required: true,
     },
-    mounted() {
-     
-    },
-  }
+  },
+  data() {
+    return {};
+  },
+  mounted() {
+    console.log(this.clickRow);
+    console.log(this.columns);
+  },
+};
 </script>
 
 <style>

@@ -6,19 +6,20 @@
         <a-input
           v-decorator="['id', { rules: [{ message: '请输入工单编号' }] }]"
           placeholder="请输入工单编号"
+           :style="{ width: '150px' }"
 		  allowClear
         >
         </a-input>
       </a-form-item>
       <!-- 台区名称 -->
-      <a-form-item>
+      <a-form-item >
         <a-select
           v-decorator="[
             'taiquname',
             { rules: [{ message: '请选择台区名称' }] },
           ]"
           placeholder="请选择台区名称"
-          :style="{ width: '200px' }"
+          :style="{ width: '150px' }"
 		  allowClear
         >
           <a-select-option value="male"> male </a-select-option>
@@ -30,7 +31,7 @@
         <a-select
           v-decorator="['state', { rules: [{ message: '请选择工单状态' }] }]"
           placeholder="请选择工单状态"
-          :style="{ width: '200px' }"
+          :style="{ width: '150px' }"
 		  allowClear
         >
           <a-select-option value="male"> 完成 </a-select-option>
@@ -42,13 +43,14 @@
         <a-input
           v-decorator="['username', { rules: [{ message: '请输入用户名称' }] }]"
           placeholder="请输入用户名称"
+           :style="{ width: '150px' }"
 		  allowClear
         >
         </a-input>
       </a-form-item>
       <!-- 开始时间 -->
       <a-form-item>
-        <a-range-picker @change="onChange" />
+        <a-range-picker :style="{ width: '200px' }" @change="onChange" />
       </a-form-item>
       <!-- <span style="font-weight: 700">~</span> -->
       <!-- 结束时间 -->
