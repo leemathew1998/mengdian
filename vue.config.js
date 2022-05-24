@@ -78,28 +78,28 @@ module.exports = {
     },
   },
 
-  devServer: {
-    port: 3000,
-    proxy: {
-      /* '/api': {
-        target: 'https://mock.ihx.me/mock/5baf3052f7da7e07e04a5116/antd-pro', //mock API接口系统
-        ws: false,
-        changeOrigin: true,
-        pathRewrite: {
-          '/jeecg-boot': ''  //默认所有请求都加了jeecg-boot前缀，需要去掉
-        }
-      }, */
-      '/jeecg-boot': {
-        target: 'http://127.0.0.1:20221', // 请求本地 需要jeecg-boot后台项目
-        ws: false,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/jeecg-boot': '/api', // 适用于单体
-          // '^/jeecg-boot': '/dfzt-system', // 适用于微服务
-        },
-      },
-    },
-  },
+  // devServer: {
+  //   port: 3000,
+  //   proxy: {
+  //     '/api': {
+  //       target: 'https://mock.ihx.me/mock/5baf3052f7da7e07e04a5116/antd-pro', //mock API接口系统
+  //       ws: false,
+  //       changeOrigin: true,
+  //       pathRewrite: {
+  //         '/jeecg-boot': ''  //默认所有请求都加了jeecg-boot前缀，需要去掉
+  //       }
+  //     },
+  //     // '/jeecg-boot': {
+  //     //   target: 'http://1.15.125.141:3007', // 请求本地 需要jeecg-boot后台项目
+  //     //   ws: false,
+  //     //   changeOrigin: true,
+  //     //   pathRewrite: {
+  //     //     '^/jeecg-boot': '', // 适用于单体
+  //     //     // '^/jeecg-boot': '/dfzt-system', // 适用于微服务
+  //     //   },
+  //     // },
+  //   },
+  // },
 
   lintOnSave: undefined,
 }
