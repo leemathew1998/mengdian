@@ -43,7 +43,7 @@
         <a-input
           v-decorator="['username', { rules: [{ message: '请输入用户名称' }] }]"
           placeholder="请输入用户名称"
-           :style="{ width: '150px' }"
+          :style="{ width: '150px' }"
 		  allowClear
         >
         </a-input>
