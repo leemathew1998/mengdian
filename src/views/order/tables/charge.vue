@@ -3,7 +3,7 @@
     <div class="form">
       <SearchForm></SearchForm>
     </div>
-    <!-- <Tables
+    <Tables
       @changeSelectedRowKeys="changeSelectedRowKeys"
       @clickRow="clickRows"
       :columns="columns"
@@ -11,14 +11,14 @@
       operationName="派单"
     >
       <template v-slot="slotProps">
-        <a-button @click.stop="operation(slotProps.table_key)">转派</a-button>
+        <a-button size="small" @click.stop="operation(slotProps.table_key)">转派</a-button>
       </template>
-    </Tables> -->
-    <a-table :columns="columns" :data-source="data" :scroll="{ x: 1300 }">
-      <a slot="action" slot-scope="text" href="javascript:;">
+    </Tables>
+    <!-- <a-table :columns="columns" :data-source="data" :scroll="{ x: 1300 }">
+      <a slot="action" slot-scope="slotProps" href="javascript:;">
 		  <a-button size="small" @click.stop="operation(slotProps.table_key)">转派</a-button>
 	  </a>
-    </a-table>
+    </a-table> -->
     <Modal
       :visible="modalVisible"
       @changeModal="modalVisible = !modalVisible"
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import Tables from "@/components/tables/Tables";
+import Tables from "@/components/tables/Table";
 import Modal from "@/components/modal/Modal";
 import Drawer from "@/components/drawer/Drawer";
 import SearchForm from "@/components/searchform/SearchForm";
@@ -157,14 +157,13 @@ const columns = [
 	ellipsis: true,
 	width:150
   },
-  {
-    title: '操作',
-    key: 'operation',
-	dataIndex: 'operation',
-    fixed: 'right',
-    width: 100,
-    scopedSlots: { customRender: 'action' },
-  },
+//   {
+//     title: '操作',
+//     key: 'operation',
+// 	dataIndex: 'operation',
+
+//     scopedSlots: { customRender: 'action' },
+//   },
 ];
 
 const data = [];
