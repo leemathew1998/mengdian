@@ -6,6 +6,11 @@
         <th>{{item}}</th>
       </tr>
     </table>
+    <!-- <a-descriptions v-for="(item,index) in clickRow" :key="index" bordered>
+          <a-descriptions-item label=item :span="2">
+            {{ 1}}
+          </a-descriptions-item>
+    </a-descriptions> -->
   </div>
 </template>
 
@@ -22,7 +27,13 @@
         required: true
       }
     },
-
+    data() {
+      return {
+      }
+    },
+    mounted() {
+     
+    },
   }
 </script>
 
