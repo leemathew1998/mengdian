@@ -4,8 +4,8 @@
       <div class="top">
         <div class="header">
           <a href="/">
-            <img src="~@/assets/logo.png" class="logo" alt="logo">
-            <span class="title">国家电网测试</span>
+            <img src="~@/assets/u341.png" class="logo" alt="logo">
+            <span class="title">国网呼伦贝尔供电公司</span>
           </a>
         </div>
         <div class="desc">
@@ -85,7 +85,7 @@
           }
 
           .logo {
-            height: 44px;
+            height: 70px;
             vertical-align: top;
             margin-right: 16px;
             border-style: none;
