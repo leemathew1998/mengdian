@@ -7,12 +7,12 @@
 		<div class="form">
 			<SearchForm>
 				<template slot="import">
-					<!-- <a-upload style="margin-right: 10px;" name="file" :showUploadList="false"
+					<a-upload style="margin-right: 10px;" name="file" :showUploadList="false"
 						@change="handleFileChange">
 						<a-button>
 							<a-icon type="upload" />导入
 						</a-button>
-					</a-upload> -->
+					</a-upload>
 					<a-upload name="temfile" action="http://192.168.0.103:8080/excel/upload" @change="temhandleChange">
 						<a-button>
 							<a-icon type="upload" /> Click to Upload
@@ -165,28 +165,16 @@
 					}); // 读取文件
 					let wbSheetName = wb.SheetNames[0];
 					const wbSheet = wb.Sheets[wbSheetName];
-					// 解析文件 {defval: ''}=>防止单元格为空的时解析出来的结果缺少相应的key
 					let selectFileData = XLSX.utils.sheet_to_json(wbSheet, {
 						defval: ""
 					});
-					if (!selectFileData.length) {
-						console.log(`上传的文件数据为空！`);
-						return false;
-					} else {
-						console.log(selectFileData);
-					}
-					console.log(selectFileData);
-
-					//对获取到的对象数组进行操作
 					for (let i = 0; i < selectFileData.length; i++) {
 						delete selectFileData[i].__EMPTY;
 					}
-
-					//将对象数组 转换成 JSON类型
 					let data = JSON.stringify(selectFileData);
 					alert(data);
+					console.log(data)
 				};
-
 				reader.readAsBinaryString(file);
 			},
 
