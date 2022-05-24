@@ -110,6 +110,7 @@ const user = {
 		}, userInfo) {
 			return new Promise((resolve, reject) => {
 				login(userInfo).then(response => {
+					// console.log(response)
 					if (response.code == '200') {
 						const result = response.result
 						const userInfo = result.userInfo

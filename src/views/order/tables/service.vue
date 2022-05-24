@@ -4,9 +4,9 @@
 			<SearchForm></SearchForm>
 		</div>
 		<Tables @changeSelectedRowKeys="changeSelectedRowKeys" @clickRow="clickRows" :columns="columns" :data="data"
-			operationName="派单">
+			operationName="审核">
 			<template v-slot="slotProps">
-				<a-button @click.stop="operation(slotProps.table_key)">转派</a-button>
+				<a-button @click.stop="operation(slotProps.table_key)">审核</a-button>
 			</template>
 		</Tables>
 		<Modal :visible="modalVisible" @changeModal="modalVisible = !modalVisible" :selectItem="selectItem"

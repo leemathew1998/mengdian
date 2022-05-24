@@ -29,7 +29,7 @@ export const constantRouterMap = [{
 			},
 			{
 				path: '/order',
-				// name: 'order',
+				name: 'order',
 				redirect: '/order/collection',
 				component: () => import('@/views/order/index'),
 				hidden: true,

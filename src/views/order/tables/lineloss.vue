@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
 	<div class="warp">
 		<div class="form">
 			<SearchForm></SearchForm>

@@ -140,7 +140,7 @@
 			},
 			// 账号密码登录
 			handleLogin(rememberMe) {
-				this.validateFields(['username', 'password', 'inputCode'], (err) => {
+				this.validateFields(['username', 'password', 'inputCode'], async(err) => {
 					if (!err) {
 						let loginParams = {
 							username: this.model.username,
@@ -157,12 +157,11 @@
 							.catch((err) => {
 								console.log(err)
 								if (err.info == "用户已存在,自动登录") {
-									this.$router.push('/dashboard')
+									// this.$router.push('/dashboard')
 									this.$emit('success', err.info)
 								} else {
 									this.$emit('fail', err)
 								}
-
 							})
 					} else {
 						this.$emit('validateFail')
