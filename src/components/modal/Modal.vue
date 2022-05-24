@@ -1,5 +1,5 @@
 <template>
-	<a-modal v-model="modalVisible" @ok="handleOk" @cancel="handleCancel" :title="modalName" :okText="modalName">
+	<a-modal v-model="modalVisible" @ok="handleOk" @cancel="handleCancel" :width="700" :title="modalName" :okText="modalName">
 		<div class="modalwarp">
 			<div class='top'>
 				<slot name="topSlot"></slot>
