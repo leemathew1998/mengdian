@@ -3,7 +3,7 @@
     <div class="form">
       <SearchForm></SearchForm>
     </div>
-    <Tables
+    <!-- <Tables
       @changeSelectedRowKeys="changeSelectedRowKeys"
       @clickRow="clickRows"
       :columns="columns"
@@ -13,40 +13,18 @@
       <template v-slot="slotProps">
         <a-button @click.stop="operation(slotProps.table_key)">转派</a-button>
       </template>
-    </Tables>
+    </Tables> -->
+    <a-table :columns="columns" :data-source="data" :scroll="{ x: 1300 }">
+      <a slot="action" slot-scope="text" href="javascript:;">
+		  <a-button size="small" @click.stop="operation(slotProps.table_key)">转派</a-button>
+	  </a>
+    </a-table>
     <Modal
       :visible="modalVisible"
       @changeModal="modalVisible = !modalVisible"
       :selectItem="selectItem"
     >
       <template slot="topSlot">
-        <!-- <div class="title">工单信息</div>
-				<table border="1px">
-					<tr>
-						<th>工单编号</th>
-						<th>{{ selectItem.a }}</th>
-						<th>用户电话</th>
-						<th>{{ selectItem.b }}</th>
-					</tr>
-					<tr>
-						<th>台区经理名称</th>
-						<th>{{ selectItem.c }}</th>
-						<th>台区名称</th>
-						<th>{{ selectItem.d }}</th>
-					</tr>
-					<tr>
-						<th>用户名称</th>
-						<th>{{ selectItem.e }}</th>
-						<th>用户地址</th>
-						<th>{{ selectItem.f }}</th>
-					</tr>
-					<tr>
-						<th>分析结果</th>
-						<th>{{ selectItem.g }}</th>
-						<th>说明</th>
-						<th>{{ selectItem.h }}</th>
-					</tr>
-				</table> -->
         <a-descriptions title="工单信息" bordered>
           <a-descriptions-item label="工单编号" :span="2">
             {{ selectItem.a }}
@@ -94,8 +72,8 @@
       @changeDrawer="drawerVisible = !drawerVisible"
       :clickRow="clickRow"
       :columns="columns"
-    />
-  </div>
+    /> 
+</div>
 </template>
 
 <script>
@@ -107,38 +85,56 @@ const columns = [
   {
     title: "工单编号",
     dataIndex: "a",
+	ellipsis: true,
+	width:150
   },
   {
     title: "台区名称",
     dataIndex: "b",
+	ellipsis: true,
+	width:100
   },
   {
     title: "台区经理",
     dataIndex: "c",
+	ellipsis: true,
+	width:150
   },
   {
     title: "用户名称",
     dataIndex: "d",
+	ellipsis: true,
+	width:150
   },
   {
     title: "用户地址",
     dataIndex: "e",
+	ellipsis: true,
+	width:100
   },
   {
     title: "负电失败时间",
     dataIndex: "f",
+	ellipsis: true,
+	width:150
   },
   {
     title: "负电失败时长",
     dataIndex: "g",
+	ellipsis: true,
+	width:150
   },
   {
     title: "用电状态",
     dataIndex: "h",
+	ellipsis: true,
+	width:150
   },
   {
     title: "工单周期",
     dataIndex: "i",
+	ellipsis: true,
+	width:150
   },
   {
     title: "工单状态",
@@ -146,14 +142,28 @@ const columns = [
     scopedSlots: {
       customRender: "orderStatus",
     },
+	ellipsis: true,
+	width:150
   },
   {
     title: "处理人",
     dataIndex: "j",
+	ellipsis: true,
+	width:150
   },
   {
     title: "工单时间",
     dataIndex: "k",
+	ellipsis: true,
+	width:150
+  },
+  {
+    title: '操作',
+    key: 'operation',
+	dataIndex: 'operation',
+    fixed: 'right',
+    width: 100,
+    scopedSlots: { customRender: 'action' },
   },
 ];
 
@@ -174,6 +184,8 @@ for (let i = 0; i < 46; i++) {
     k: 32,
   });
 }
+
+
 
 export default {
   data() {
@@ -217,14 +229,16 @@ export default {
 
 <style lang="less" scoped>
 .warp {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
 
   .form {
     // width: 100%;
     margin: 10px 0;
+	display: flex;
+	justify-content: space-around;
   }
 }
 .title {
@@ -238,5 +252,13 @@ export default {
 .ant-form-inline {
   display: flex;
   justify-content: space-between;
+}
+/deep/ .ant-table-tbody > tr > td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/deep/ .ant-table-thead > tr > th {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 </style>
