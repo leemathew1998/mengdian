@@ -165,14 +165,14 @@
 					}); // 读取文件
 					let wbSheetName = wb.SheetNames[0];
 					const wbSheet = wb.Sheets[wbSheetName];
-					let selectFileData = XLSX.utils.sheet_to_json(wbSheet, {
+					let selectFileData = XLSX.utils.sheet_to_csv(wbSheet, {
 						defval: ""
 					});
-					for (let i = 0; i < selectFileData.length; i++) {
-						delete selectFileData[i].__EMPTY;
-					}
+					// for (let i = 0; i < selectFileData.length; i++) {
+					// 	delete selectFileData[i].__EMPTY;
+					// }
 					let data = JSON.stringify(selectFileData);
-					alert(data);
+					// alert(data);
 					console.log(data)
 				};
 				reader.readAsBinaryString(file);
