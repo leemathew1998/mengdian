@@ -87,6 +87,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			width: 50px;
 			margin: 0 30px;
 
 			.circular {
