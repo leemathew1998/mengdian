@@ -12,7 +12,7 @@ import { ACCESS_TOKEN, TENANT_ID } from '@/store/mutation-types'
  * @type {*|string}
  */
 // let apiBaseUrl = window._CONFIG['domianURL'] || '/jeecg-boot'
-let apiBaseUrl  = 'http://10.168.4.233:8888'
+let apiBaseUrl  = 'http://1.15.125.141:3007'
 // console.log("apiBaseUrl= ",apiBaseUrl)
 // 创建 axios 实例
 const service = axios.create({

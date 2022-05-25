@@ -7,21 +7,27 @@
 		<div class="form">
 			<SearchForm>
 				<template slot="import">
-					<a-upload name="file" action="http://10.168.4.233:8888/excel/upload">
-						<a-button :loading="uploadButtonIsLoading">
-							<a-icon type="upload" /> {{ uploadButtonIsLoading ? '上传中...' : '上传文件' }}
+					<!-- 					<a-upload style="margin-right: 10px;" name="file" :showUploadList="false"
+						@change="handleFileChange">
+						<a-button>
+							<a-icon type="upload" />导入
+						</a-button>
+					</a-upload> -->
+					<a-upload name="temfile" @change="fileHandleChange">
+						<a-button>
+							<a-icon type="upload" /> 上传文件
 						</a-button>
 					</a-upload>
 				</template>
 			</SearchForm>
 		</div>
 		<div class="table">
-			<!-- 		<Tables @changeSelectedRowKeys="changeSelectedRowKeys" @clickRow="clickRows" :columns="temColumns"
+			<Tables @changeSelectedRowKeys="changeSelectedRowKeys" @clickRow="clickRows" :columns="temColumns"
 				:data="temData.data" operationName="">
-							<template v-slot="slotProps">
+				<!-- 			<template v-slot="slotProps">
 					<a-button @click.stop="operation(slotProps.table_key)">转派</a-button>
-				</template>
-			</Tables> -->
+				</template> -->
+			</Tables>
 		</div>
 		<div class="drawer">
 			<Drawer :visible="drawerVisible" @changeDrawer="drawerVisible = !drawerVisible" :clickRow="clickRow"
@@ -36,9 +42,11 @@
 	import Drawer from "@/components/drawer/Drawer";
 	import axios from 'axios'
 	import {
+		importFile
+	} from '@/api/api'
+	import {
 		uploadFile
 	} from '@api/DFZT'
-	import {postAction} from '@api/manage'
 	const columns = [{
 			title: "生成时间",
 			dataIndex: "a",
@@ -98,7 +106,9 @@
 				drawerVisible: false,
 				selectItem: {},
 				clickRow: {},
-				uploadButtonIsLoading: false,
+				headers: {
+					authorization: 'authorization-text',
+				},
 				temData: [],
 				temColumns: [{
 						title: "姓名",
@@ -120,40 +130,16 @@
 			Drawer,
 			SearchForm
 		},
-		created() {},
+		created() {
+		},
 		methods: {
 			async fileHandleChange(info) {
-				this.uploadButtonIsLoading = true;
-				console.log(info.file.status)
-				let formData = new FormData()
-				
-				formData.append('file', info.file.originFileObj)
-				// console.log(formData)
-				const res = await postAction('/excel/upload',formData)
-				console.log(res);
 				if (info.file.status !== 'uploading') {
-					// console.log(info.file, info.fileList);
+					console.log(info.file, info.fileList);
 					let formData = new FormData()
-					
-					formData.append('file', info.file.originFileObj)
-					// console.log(formData)
+					formData.append('files', info.file.originFileObj)
 					const res = await uploadFile(formData)
-					console.log(res);
-					// var config = {
-					// 	method: 'post',
-					// 	url: 'http://10.168.4.233:8888/excel/upload',
-					// 	data: formData
-					// };
-
-					// axios(config)
-					// 	.then(function(response) {
-					// 		console.log(JSON.stringify(response.data));
-					// 	})
-					// 	.catch(function(error) {
-					// 		console.log(error);
-					// 	});
-					this.uploadButtonIsLoading = false
-					
+					console.log(res.data);
 				}
 				if (info.file.status === 'done') {
 					this.$message.success(`${info.file.name} file uploaded successfully`);
@@ -161,6 +147,32 @@
 					this.$message.error(`${info.file.name} file upload failed.`);
 				}
 			},
+			// handleFileChange(info) {
+			// 	if (info.file.status !== 'uploading') {
+			// 		this.readFile(info.file.originFileObj)
+			// 	}
+			// },
+			// readFile(file) {
+			// 	let that = this;
+			// 	let reader = new FileReader();
+			// 	reader.onload = function(e) {
+			// 		let wb = XLSX.read(e.target.result, {
+			// 			type: "binary"
+			// 		}); // 读取文件
+			// 		let wbSheetName = wb.SheetNames[0];
+			// 		const wbSheet = wb.Sheets[wbSheetName];
+			// 		let selectFileData = XLSX.utils.sheet_to_json(wbSheet, {
+			// 			defval: ""
+			// 		});
+			// 		for (let i = 0; i < selectFileData.length; i++) {
+			// 			delete selectFileData[i].__EMPTY;
+			// 		}
+			// 		let data = JSON.stringify(selectFileData);
+			// 		// alert(data);
+			// 		console.log(data)
+			// 	};
+			// 	reader.readAsBinaryString(file);
+			// },
 
 			changeSelectedRowKeys(e) {
 				this.selectedRowKeys = e;

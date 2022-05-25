@@ -48,7 +48,7 @@
   export default {
     data() {
       return {
-        collapsed: true,
+        collapsed: false,
         selectedKeys: []
       };
     },
@@ -107,7 +107,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         width: 75px;
       }
@@ -119,11 +119,12 @@
       span {
         font-weight: 700;
         font-size: 16px;
+        line-height: 25px;
       }
 
       .svg {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
         // background-color: #fff;
         color: #fff;
       }
