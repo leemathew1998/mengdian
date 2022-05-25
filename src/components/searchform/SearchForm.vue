@@ -115,11 +115,13 @@ export default {
         });
         tableData.push(rowData);
       });
-      console.log(this.tableData);
+      // console.log(this.tableData);
       let ws = XLSX.utils.aoa_to_sheet(tableData);
       let wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "数据"); // 工作簿名称
-      XLSX.writeFile(wb, "数据.xlsx"); // 保存的文件名
+	  var data = XLSX.write(wb);
+	  console.log(data)
+      // XLSX.writeFile(wb, "数据.xlsx"); // 保存的文件名
     },
 	onChange(date, dateString) {
       console.log(date, dateString);
