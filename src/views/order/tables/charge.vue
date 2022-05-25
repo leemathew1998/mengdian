@@ -16,11 +16,6 @@
         >
       </template>
     </Tables>
-    <!-- <a-table :columns="columns" :data-source="data" :scroll="{ x: 1300 }">
-      <a slot="action" slot-scope="slotProps" href="javascript:;">
-		  <a-button size="small" @click.stop="operation(slotProps.table_key)">转派</a-button>
-	  </a>
-    </a-table> -->
     <Modal
       :visible="modalVisible"
       @changeModal="modalVisible = !modalVisible"
@@ -161,13 +156,6 @@ const columns = [
     ellipsis: true,
     width: 150,
   },
-  //   {
-  //     title: '操作',
-  //     key: 'operation',
-  // 	dataIndex: 'operation',
-
-  //     scopedSlots: { customRender: 'action' },
-  //   },
 ];
 
 const data = [];

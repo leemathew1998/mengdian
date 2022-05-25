@@ -63,34 +63,42 @@
 	const columns = [{
 			title: "工单编号",
 			dataIndex: "a",
+			ellipsis: true,
 		},
 		{
 			title: "台区名称",
 			dataIndex: "b",
+			ellipsis: true,
 		},
 		{
 			title: "台区经理",
 			dataIndex: "c",
+			ellipsis: true,
 		},
 		{
 			title: "缺陷编号",
 			dataIndex: "d",
+			ellipsis: true,
 		},
 		{
 			title: "缺陷级别",
 			dataIndex: "e",
+			ellipsis: true,
 		},
 		{
 			title: "缺陷位置",
 			dataIndex: "f",
+			ellipsis: true,
 		},
 		{
 			title: "缺陷描述",
 			dataIndex: "g",
+			ellipsis: true,
 		},
 		{
 			title: "工单周期",
 			dataIndex: "i",
+			ellipsis: true,
 		},
 		{
 			title: "工单状态",
@@ -98,14 +106,17 @@
 			scopedSlots: {
 				customRender: "orderStatus",
 			},
+			ellipsis: true,
 		},
 		{
 			title: "处理人",
 			dataIndex: "j",
+			ellipsis: true,
 		},
 		{
 			title: "工单时间",
 			dataIndex: "k",
+			ellipsis: true,
 		},
 	];
 
