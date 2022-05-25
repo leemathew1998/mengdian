@@ -96,11 +96,7 @@ export const constantRouterMap = [{
 				component: () => import('@/views/basic/index')
 			}
 		]
-	}, {
-		path: '*',
-		redirect: '/404',
-		hidden: true
-	},
+	}, 
 	{
 		path: '/user',
 		component: UserLayout,
@@ -127,5 +123,15 @@ export const constantRouterMap = [{
 				component: () => import( /* webpackChunkName: "user" */ '@/views/user/alteration/Alteration')
 			}
 		]
+	},
+	{
+		path:'/404',
+		name:'404',
+		component:()=>import('@/views/exception/404')
+	},
+	{
+		path: '*',
+		redirect: '/404',
+		hidden: true
 	},
 ]
