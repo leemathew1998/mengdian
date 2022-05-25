@@ -2,7 +2,7 @@ import { getAction, deleteAction, putAction, postAction, httpAction } from '@/ap
 import Vue from 'vue'
 import { UI_CACHE_DB_DICT_DATA } from '@/store/mutation-types'
 //国网蒙电项目API
-const importFile = (params)=>postAction('/uploadavatar', params)
+const uploadFile = (params)=>postAction('/uploadavatar', params)
 
 // 角色管理
 const addRole = (params) => postAction('/sys/role/add', params)
@@ -105,7 +105,7 @@ export const transitRESTful = {
 export {
   // imgView,
   // doMian,
-  importFile,
+  uploadFile,
   addRole,
   editRole,
   checkRoleCode,

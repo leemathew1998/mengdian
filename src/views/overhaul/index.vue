@@ -7,15 +7,15 @@
 		<div class="form">
 			<SearchForm>
 				<template slot="import">
-					<a-upload style="margin-right: 10px;" name="file" :showUploadList="false"
+					<!-- 					<a-upload style="margin-right: 10px;" name="file" :showUploadList="false"
 						@change="handleFileChange">
 						<a-button>
 							<a-icon type="upload" />导入
 						</a-button>
-					</a-upload>
-					<a-upload name="temfile" action="http://192.168.0.103:8080/excel/upload" @change="temhandleChange">
+					</a-upload> -->
+					<a-upload name="temfile" @change="fileHandleChange">
 						<a-button>
-							<a-icon type="upload" /> Click to Upload
+							<a-icon type="upload" /> 上传文件
 						</a-button>
 					</a-upload>
 				</template>
@@ -41,7 +41,12 @@
 	import Tables from "@/components/tables/Tables";
 	import Drawer from "@/components/drawer/Drawer";
 	import axios from 'axios'
-
+	import {
+		importFile
+	} from '@/api/api'
+	import {
+		uploadFile
+	} from '@api/DFZT'
 	const columns = [{
 			title: "生成时间",
 			dataIndex: "a",
@@ -125,24 +130,15 @@
 			Drawer,
 			SearchForm
 		},
-		async created() {
-			this.temData = await axios.get('http://192.168.0.103:8080/excel/show')
-			console.log(this.temData.data)
+		created() {
 		},
 		methods: {
-			async temhandleChange(info) {
+			async fileHandleChange(info) {
 				if (info.file.status !== 'uploading') {
 					console.log(info.file, info.fileList);
 					let formData = new FormData()
 					formData.append('files', info.file.originFileObj)
-					const res = await service({
-						url: '/api/files/upload',
-						method: 'POST',
-						headers: {
-							'Content-Type': 'multipart/form-data'
-						},
-						data: formData
-					})
+					const res = await uploadFile(formData)
 					console.log(res.data);
 				}
 				if (info.file.status === 'done') {
@@ -151,32 +147,32 @@
 					this.$message.error(`${info.file.name} file upload failed.`);
 				}
 			},
-			handleFileChange(info) {
-				if (info.file.status !== 'uploading') {
-					this.readFile(info.file.originFileObj)
-				}
-			},
-			readFile(file) {
-				let that = this;
-				let reader = new FileReader();
-				reader.onload = function(e) {
-					let wb = XLSX.read(e.target.result, {
-						type: "binary"
-					}); // 读取文件
-					let wbSheetName = wb.SheetNames[0];
-					const wbSheet = wb.Sheets[wbSheetName];
-					let selectFileData = XLSX.utils.sheet_to_json(wbSheet, {
-						defval: ""
-					});
-					for (let i = 0; i < selectFileData.length; i++) {
-						delete selectFileData[i].__EMPTY;
-					}
-					let data = JSON.stringify(selectFileData);
-					// alert(data);
-					console.log(data)
-				};
-				reader.readAsBinaryString(file);
-			},
+			// handleFileChange(info) {
+			// 	if (info.file.status !== 'uploading') {
+			// 		this.readFile(info.file.originFileObj)
+			// 	}
+			// },
+			// readFile(file) {
+			// 	let that = this;
+			// 	let reader = new FileReader();
+			// 	reader.onload = function(e) {
+			// 		let wb = XLSX.read(e.target.result, {
+			// 			type: "binary"
+			// 		}); // 读取文件
+			// 		let wbSheetName = wb.SheetNames[0];
+			// 		const wbSheet = wb.Sheets[wbSheetName];
+			// 		let selectFileData = XLSX.utils.sheet_to_json(wbSheet, {
+			// 			defval: ""
+			// 		});
+			// 		for (let i = 0; i < selectFileData.length; i++) {
+			// 			delete selectFileData[i].__EMPTY;
+			// 		}
+			// 		let data = JSON.stringify(selectFileData);
+			// 		// alert(data);
+			// 		console.log(data)
+			// 	};
+			// 	reader.readAsBinaryString(file);
+			// },
 
 			changeSelectedRowKeys(e) {
 				this.selectedRowKeys = e;
