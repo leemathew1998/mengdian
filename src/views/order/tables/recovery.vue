@@ -63,38 +63,47 @@
 	const columns = [{
 			title: "工单编号",
 			dataIndex: "a",
+			ellipsis: true,
 		},
 		{
 			title: "台区名称",
 			dataIndex: "b",
+			ellipsis: true,
 		},
 		{
 			title: "台区经理",
 			dataIndex: "c",
+			ellipsis: true,
 		},
 		{
 			title: "用户名称",
 			dataIndex: "d",
+			ellipsis: true,
 		},
 		{
 			title: "用户地址",
 			dataIndex: "e",
+			ellipsis: true,
 		},
 		{
 			title: "用电类别",
 			dataIndex: "f",
+			ellipsis: true,
 		},
 		{
 			title: "电度电费",
 			dataIndex: "g",
+			ellipsis: true,
 		},
 		{
 			title: "违约金",
 			dataIndex: "h",
+			ellipsis: true,
 		},
 		{
 			title: "工单周期",
 			dataIndex: "i",
+			ellipsis: true,
 		},
 		{
 			title: "工单状态",
@@ -102,14 +111,17 @@
 			scopedSlots: {
 				customRender: "orderStatus",
 			},
+			ellipsis: true,
 		},
 		{
 			title: "处理人",
 			dataIndex: "j",
+			ellipsis: true,
 		},
 		{
 			title: "工单时间",
 			dataIndex: "k",
+			ellipsis: true,
 		},
 	];
 
