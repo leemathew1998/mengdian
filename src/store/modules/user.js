@@ -31,15 +31,19 @@ const user = {
 		username: '',
 		realname: '',
 		tenantid: '',
-		welcome: '',
+		welcome: 'welcome!',
 		avatar: '',
 		permissionList: [],
 		info: {},
+		role:'',
 		// 系统安全模式
 		sysSafeMode: null
 	},
 
 	mutations: {
+		SET_ROLE: (state, role) => {
+			state.role = role
+		},
 		SET_TOKEN: (state, token) => {
 			state.token = token
 		},
@@ -74,6 +78,9 @@ const user = {
 	},
 
 	actions: {
+		changewelcome({commit},info){
+			// console.log(info)
+		},
 		// CAS验证登录
 		ValidateLogin({
 			commit

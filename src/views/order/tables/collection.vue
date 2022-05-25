@@ -173,16 +173,6 @@
 		},
 		computed: {},
 		created() {
-			const res = axios.post('http://10.168.4.148:8080/json/demo',[{a:'测试'}] );
-			console.log(res)
-			const data = Json.stringify([{a:'测试',b:'快快收到'}])
-			axios({
-			  method:'post',
-			  url:'http://10.168.4.148:8080/json/demo',
-			  data:[{a:'测试',b:'快快收到'}]
-			}).then((res)=>{
-			  console.log(res)
-			})
 		},
 
 		methods: {

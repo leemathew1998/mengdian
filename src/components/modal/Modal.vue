@@ -45,9 +45,6 @@
 				this.modalVisible = val
 			}
 		},
-		created() {
-			console.log(this.toggle)
-		},
 		methods: {
 
 			handleCancel() {
