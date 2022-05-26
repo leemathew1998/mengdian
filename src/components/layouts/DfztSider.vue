@@ -1,5 +1,5 @@
 <template>
-	<a-layout-sider v-model="collapsed" :style="{ overflow: 'auto', position: 'fixed', left: 0 }" id="warp" width="80">
+	    <a-layout-sider v-model="collapsed" :style="{ overflow: 'auto', position: 'fixed', left: 0 }" id="warp" width="80">
 		<div class="logo_warp">
 			<div class="logo" />
 		</div>
@@ -131,9 +131,7 @@
 			flex-direction: column;
 
 			.ant-menu-item {
-				// flex: 1;
-				// 修改由于权限问题导致的菜单高度变化
-				height: 90px;
+				flex: 1;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-around;
