@@ -181,13 +181,9 @@
 					let formData = new FormData()
 					formData.append('file', info.file)
 					const res = await postAction('/excel/upload', formData)
+					this.$message.success(`${info.file.name} file uploaded successfully`);
 					console.log(res.data);
 				}
-				// if (info.file.status === 'done') {
-				// 	this.$message.success(`${info.file.name} file uploaded successfully`);
-				// } else if (info.file.status === 'error') {
-				// 	this.$message.error(`${info.file.name} file upload failed.`);
-				// }
 			},
 			solveformData(e) {
 				console.log(e);
