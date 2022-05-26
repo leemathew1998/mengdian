@@ -3,8 +3,7 @@
 		<div class="form">
 			<SearchForm @formData="solveformData">
 				<template slot="import">
-					<a-upload name="file" :multiple="true" action="http://10.168.4.233:8888/excel/upload"
-						:headers="headers" @change="fileHandleChange">
+					<a-upload name="file" :custom-request="fileHandleChange">
 						<a-button>
 							<a-icon type="upload" /> 上传
 						</a-button>
@@ -71,6 +70,9 @@
 	import Modal from "@/components/modal/Modal";
 	import Drawer from "@/components/drawer/Drawer";
 	import SearchForm from "@/components/searchform/SearchForm";
+	import {
+		postAction
+	} from '@/api/manage'
 	const columns = [{
 			title: "工单编号",
 			dataIndex: "a",
@@ -171,16 +173,21 @@
 		computed: {},
 
 		methods: {
-			fileHandleChange(info) {
-				this.solveformData()
-				if (info.file.status !== "uploading") {
-					console.log(info.file, info.fileList);
+			async fileHandleChange(info) {
+				console.log();
+				if (['xlsx', 'xml', 'xls'].indexOf(info.file.name.split('.')[1]) == -1) {
+					this.$message.error(`${info.file.name} 文件格式不正确！，请导入xml、xlsx、xls等类型文件！`);
+				} else {
+					let formData = new FormData()
+					formData.append('file', info.file)
+					const res = await postAction('/excel/upload', formData)
+					console.log(res.data);
 				}
-				if (info.file.status === "done") {
-					this.$message.success(`${info.file.name} 上传成功`);
-				} else if (info.file.status === "error") {
-					this.$message.error(`${info.file.name} 上传失败`);
-				}
+				// if (info.file.status === 'done') {
+				// 	this.$message.success(`${info.file.name} file uploaded successfully`);
+				// } else if (info.file.status === 'error') {
+				// 	this.$message.error(`${info.file.name} file upload failed.`);
+				// }
 			},
 			solveformData(e) {
 				console.log(e);
