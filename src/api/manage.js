@@ -14,15 +14,15 @@ export default api
 
 // post
 export function postAction(url, parameter) {
-  // let sign = signMd5Utils.getSign(url, parameter)
+  let sign = signMd5Utils.getSign(url, parameter)
   // 将签名和时间戳，添加在请求接口 Header
-  // let signHeader = { 'X-Sign': sign, 'X-TIMESTAMP': signMd5Utils.getDateTimeToString() }
+  let signHeader = { 'X-Sign': sign, 'X-TIMESTAMP': signMd5Utils.getDateTimeToString() }
 
   return axios({
     url: url,
     method: 'post',
     data: parameter,
-    // headers: signHeader
+    headers: signHeader
   })
 }
 

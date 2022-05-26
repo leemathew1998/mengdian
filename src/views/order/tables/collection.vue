@@ -184,8 +184,8 @@ export default {
       selectItem: {},
       clickRow: {},
       tableLoading: false,
-	  headers: {
-        authorization: 'authorization-text',
+      headers: {
+        authorization: "authorization-text",
       },
     };
   },
@@ -196,17 +196,16 @@ export default {
     SearchForm,
   },
   computed: {},
-  
 
   methods: {
-    fileHandleChange(info) {
-		this.solveformData()
-      if (info.file.status !== 'uploading') {
+        fileHandleChange(info) {
+        this.solveformData()
+      if (info.file.status !== "uploading") {
         console.log(info.file, info.fileList);
       }
-      if (info.file.status === 'done') {
+      if (info.file.status === "done") {
         this.$message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
+      } else if (info.file.status === "error") {
         this.$message.error(`${info.file.name} file upload failed.`);
       }
     },
@@ -257,6 +256,7 @@ export default {
   font-size: 16px;
   line-height: 1.5;
 }
+
 
 
 // /deep/ .ant-table-tbody > tr > td {
