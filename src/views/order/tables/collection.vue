@@ -165,7 +165,7 @@
 			return {
 				data,
 				columns,
-				selectedRowKeys: [], // Check here to configure the default column
+				selectedRowKeys: [], //选择多行数组
 				modalVisible: false,
 				drawerVisible: false,
 				selectItem: {},
