@@ -75,8 +75,11 @@
 	} from '@/api/manage'
 	const columns = [{
 			title: "工单编号",
-			dataIndex: "a",
+			dataIndex: "orderNumber",
 			ellipsis: true,
+			scopedSlots: {
+				customRender: "orderNumber",
+			},
 		},
 		{
 			title: "台区名称",
@@ -117,7 +120,7 @@
 			ellipsis: true,
 		},
 		{
-			title: "工单周期",
+			title: "工单创建时间",
 			dataIndex: "i",
 			ellipsis: true,
 		},
@@ -127,17 +130,21 @@
 			ellipsis: true,
 		},
 		{
-			title: "工单时间",
-			dataIndex: "k",
+			title: "工单耗时",
+			dataIndex: "orderTimeConsuming",
 			ellipsis: true,
+			scopedSlots: {
+				customRender: "orderTimeConsuming",
+			},
 		},
 	];
 
 	const data = [];
 	for (let i = 0; i < 46; i++) {
+		const random = Math.random()
 		data.push({
 			key: i,
-			a: `Edward King ${i}`,
+			orderNumber: `Edward King ${i}`,
 			b: 32,
 			c: `London, Park Lane no. ${i}`,
 			d: `Edward King ${i}`,
@@ -147,7 +154,9 @@
 			orderStatus: 32,
 			i: `London, Park Lane no. ${i}`,
 			j: `Edward King ${i}`,
-			k: 32,
+			orderTimeConsuming: '工单耗时字段',
+			alert: random > 0.5 ? true : false,
+			safe: random < 0.4 ? true : false,
 		});
 	}
 

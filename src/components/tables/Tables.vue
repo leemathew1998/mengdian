@@ -1,11 +1,15 @@
 <template>
 	<div class="warp">
 		<a-table :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }" :columns="columns"
-			:data-source="data" bordered @change="pagechange" :customRow="handleClickRow" :loading="tableLoading"
-			>
-			<!-- <template > -->
-			<div slot="orderStatus" slot-scope="text, record" class='orderStatus'> {{text}}</div>
-			<!-- </template> -->
+			:data-source="data" bordered @change="pagechange" :customRow="handleClickRow" :loading="tableLoading">
+			<div slot="orderNumber" slot-scope="text, record" class="orderNumber">
+				<a-icon type="bell" theme="filled" style="fontSize: 16px "
+					:class="{alert:record.alert,hidden:!record.alert}" />
+				{{text}}
+			</div>
+			<div slot="orderStatus" slot-scope="text, record" :class="{alert:record.alert,safe:record.safe}">{{text}}
+			</div>
+			<div slot="orderTimeConsuming" slot-scope="text, record" :class="{alert:record.alert}">{{text}}</div>
 			<template slot="operation" slot-scope="text, record">
 				<div>
 					<slot :table_key="record"></slot>
@@ -53,37 +57,12 @@
 			}
 			// console.log('created')
 		},
-
-		mounted() {
-			// console.log('mounted')
-			// let status = document.getElementsByClassName('orderStatus')
-			// for (var i = 0; i < status.length; i++) {
-			// 	// console.log(status[i].parentNode)
-			// 	// status[i].parentNode.style['backgroundColor'] = '#149BD5'
-			// 	status[i].parentElement.style.background='#149BD5'
-			// }
-			// let status = document.getElementsByClassName('orderStatus')
-			// for (var i = 0; i < status.length; i++) {
-			// 	// status[i].parentNode.style['backgroundColor'] = '#149BD5'
-			// 	status[i].innerHTML = 'asas'+i
-			// }
-		},
 		methods: {
 			onSelectChange(selectedRowKeys) {
 				this.selectedRowKeys = selectedRowKeys;
 				this.$emit('changeSelectedRowKeys', this.selectedRowKeys)
 			},
-			pagechange(e) {
-				// let status = document.getElementsByClassName('orderStatus')
-				// console.log(status[0])
-				// for (var i = 0; i < status.length; i++) {
-				// 	// status[i].style['backgroundColor'] = '#149BD5'
-				// 	status[i].innerHTML = 'asas'+i
-				// 	// status[i].parentNode.classList.add("parentNode")
-				// 	// console.log(status[i].parentNode)
-				// }
-				// console.log(status[0])
-			},
+			pagechange(e) {},
 			handleClickRow(record, index) {
 				return {
 					on: {
@@ -101,5 +80,20 @@
 	.warp {
 		width: 100%;
 
+		.orderNumber {
+			text-align: right;
+		}
+
+		.alert {
+			color: red;
+		}
+
+		.safe {
+			color: green;
+		}
+
+		.hidden {
+			display: none;
+		}
 	}
 </style>
