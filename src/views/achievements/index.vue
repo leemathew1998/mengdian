@@ -7,12 +7,15 @@
             <p class="title">河东河西供电服务中心</p>
             <p class="data">{{ systemTime }}</p>
             <p class="ranking">市公司当日排名</p>
-			<p class="first">第{{}}名</p>
-			<p class="link">日环比 {{}}</p>
-			<div class="data">
-				<p>{{}}</p>
-				<a-date-picker style="width:60%;float:right" @change="onChange" />
-			</div>
+            <p class="first">第{{}}名</p>
+            <p class="link">日环比 {{}}</p>
+            <div class="data">
+              <p>{{ dateTime }}</p>
+              <a-date-picker
+                style="width: 60%; float: right"
+                @change="onChange"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -75,7 +78,7 @@
           :data-source="centerdata"
           size="small"
         ></a-table>
-        <a-divider style="margin-top: 0;margin-bottom:10px" />
+        <a-divider style="margin-top: 0; margin-bottom: 10px" />
         <div class="foot">
           <p>累计完成工单： {{}}单</p>
           <p>最高完成： {{}}单</p>
@@ -234,6 +237,7 @@ export default {
       clickRow: {},
       tableLoading: false,
       systemTime: null,
+      dateTime: null,
     };
   },
   mounted() {
@@ -264,15 +268,16 @@ export default {
     handleChange(value) {
       console.log(`selected ${value}`);
     },
-	// 查看详情
+    // 查看详情
     operation(key) {
       this.selectItem = key;
       this.modalVisible = !this.modalVisible;
     },
-	// 日期
-	 onChange(date, dateString) {
+    // 日期
+    onChange(date, dateString) {
       console.log(date, dateString);
-	//   let time = dateString.substring(5,7)
+      this.dateTime =
+        dateString.substring(5, 7) + "月" + dateString.substring(8, 11) + "日";
     },
   },
 };
@@ -335,27 +340,30 @@ export default {
   color: #999;
   margin-bottom: 5px;
 }
-.first{
-	font-size: 30px;
-	line-height: 60px;
-	text-align: center;
-	color: #009688;
-	margin-bottom: 0;
+.first {
+  font-size: 30px;
+  line-height: 60px;
+  text-align: center;
+  color: #009688;
+  margin-bottom: 0;
 }
-.link{
-	font-size: 12px;
-	text-align: right;
-	margin-bottom: 0;
+.link {
+  font-size: 12px;
+  text-align: right;
+  margin-bottom: 0;
 }
-.data{
-	margin-top: 20px;
-	width: 100%;
-	p{
-		width: 30%;
-		line-height: 30px;
-		float: left;
-		margin-bottom: 0;
-	}
+.data {
+  margin-top: 20px;
+  width: 100%;
+  p {
+	font-size: 13px;
+	color: #000;
+	font-weight: 500;
+    width: 30%;
+    line-height: 30px;
+    float: left;
+    margin-bottom: 0;
+  }
 }
 .show {
   display: flex;
