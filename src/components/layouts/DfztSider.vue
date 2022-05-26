@@ -131,7 +131,8 @@
 			flex-direction: column;
 
 			.ant-menu-item {
-				flex: 1;
+				// flex: 1;
+				height: 100px;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-around;
