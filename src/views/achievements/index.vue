@@ -7,6 +7,12 @@
             <p class="title">河东河西供电服务中心</p>
             <p class="data">{{ systemTime }}</p>
             <p class="ranking">市公司当日排名</p>
+			<p class="first">第{{}}名</p>
+			<p class="link">日环比 {{}}</p>
+			<div class="data">
+				<p>{{}}</p>
+				<a-date-picker style="width:60%;float:right" @change="onChange" />
+			</div>
           </div>
         </div>
       </div>
@@ -31,37 +37,54 @@
         <div class="head">
           <p class="title">当日总积分：{{}}</p>
         </div>
-		<Tables
-            :columns="bigcolumns"
-            :data="bigdata"
-            operationName="派单"
-            :tableLoading="tableLoading"
-          >
-            <template v-slot="slotProps">
-              <a-button
-                size="small"
-				type="primary"
-                @click.stop="operation(slotProps.table_key)"
-                >查看详情</a-button
-              >
-            </template>
-          </Tables>
+        <Tables
+          :columns="bigcolumns"
+          :data="bigdata"
+          operationName="派单"
+          :tableLoading="tableLoading"
+        >
+          <template v-slot="slotProps">
+            <a-button
+              size="small"
+              type="primary"
+              @click.stop="operation(slotProps.table_key)"
+              >查看详情</a-button
+            >
+          </template>
+        </Tables>
       </div>
     </div>
     <div class="wrap-right">
       <div class="box">
-		  <div class="head">
-          <p class="title" style="background:#fff;">各所站积分</p>
+        <div class="head">
+          <p class="title" style="background: #fff">各所站积分</p>
         </div>
-		<a-input-search
-            placeholder="
+        <a-input-search
+          placeholder="
 请输入供电所名称"
-            style="width: 100%"
-            @search="onSearch"
-          />
-	  </div>
+          style="width: 100%"
+          @search="onSearch"
+        />
+        <div class="show">
+          <p>最高 {{}}</p>
+          <p>最低 {{}}</p>
+          <p>平均 {{}}</p>
+        </div>
+        <a-table
+          :columns="centercolumns"
+          :data-source="centerdata"
+          size="small"
+        ></a-table>
+        <a-divider style="margin-top: 0;margin-bottom:10px" />
+        <div class="foot">
+          <p>累计完成工单： {{}}单</p>
+          <p>最高完成： {{}}单</p>
+          <p>最低完成： {{}}单</p>
+          <p>平均完成： {{}}单</p>
+        </div>
+      </div>
     </div>
-	<Modal
+    <Modal
       :visible="modalVisible"
       modalName="派单"
       @changeModal="modalVisible = !modalVisible"
@@ -135,7 +158,7 @@ const columns = [
   },
 ];
 const data = [];
-for (let i = 0; i < 46; i++) {
+for (let i = 0; i < 106; i++) {
   data.push({
     key: i,
     ranking: `${i}`,
@@ -162,14 +185,39 @@ const bigcolumns = [
 const bigdata = [];
 for (let y = 0; y < 15; y++) {
   bigdata.push({
-	key: y,
+    key: y,
     index: `${y}`,
     value: `张 ${y}`,
     integral: `${y}`,
   });
 }
+const centercolumns = [
+  {
+    title: "排名",
+    dataIndex: "ranking",
+  },
+  {
+    title: "名称",
+    dataIndex: "name",
+    ellipsis: true,
+  },
+  {
+    title: "积分",
+    dataIndex: "integral",
+    ellipsis: true,
+  },
+];
+const centerdata = [];
+for (let i = 0; i < 46; i++) {
+  centerdata.push({
+    key: i,
+    ranking: `${i}`,
+    name: `张 ${i}`,
+    integral: `${i}`,
+  });
+}
 export default {
-	components: {
+  components: {
     Tables,
     Modal,
   },
@@ -179,7 +227,9 @@ export default {
       columns,
       bigcolumns,
       bigdata,
-	  modalVisible: false,
+      centercolumns,
+      centerdata,
+      modalVisible: false,
       selectItem: {},
       clickRow: {},
       tableLoading: false,
@@ -210,14 +260,19 @@ export default {
     onSearch(value) {
       console.log(value);
     },
-    
 
     handleChange(value) {
       console.log(`selected ${value}`);
     },
+	// 查看详情
     operation(key) {
       this.selectItem = key;
       this.modalVisible = !this.modalVisible;
+    },
+	// 日期
+	 onChange(date, dateString) {
+      console.log(date, dateString);
+	//   let time = dateString.substring(5,7)
     },
   },
 };
@@ -229,7 +284,6 @@ export default {
 .warp {
   display: flex;
   width: 100%;
-  height: 83vh;
   .wrap-left {
     flex: 2;
     display: flex;
@@ -281,9 +335,48 @@ export default {
   color: #999;
   margin-bottom: 5px;
 }
+.first{
+	font-size: 30px;
+	line-height: 60px;
+	text-align: center;
+	color: #009688;
+	margin-bottom: 0;
+}
+.link{
+	font-size: 12px;
+	text-align: right;
+	margin-bottom: 0;
+}
+.data{
+	margin-top: 20px;
+	width: 100%;
+	p{
+		width: 30%;
+		line-height: 30px;
+		float: left;
+		margin-bottom: 0;
+	}
+}
+.show {
+  display: flex;
+  justify-content: space-around;
+  p {
+    line-height: 40px;
+    font-size: 20px;
+    color: #999;
+    margin-bottom: 0;
+  }
+}
+.foot {
+  p {
+    line-height: 40px;
+    font-size: 20px;
+    color: #999;
+  }
+}
 /deep/ .ant-table-tbody > tr > td {
-  padding-top: 11.5px;
-  padding-bottom: 11.5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 /deep/ .ant-table-thead > tr > th {
   padding-top: 15px;
