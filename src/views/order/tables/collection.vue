@@ -8,7 +8,7 @@
             :multiple="true"
             action="http://10.168.4.233:8888/excel/upload"
             :headers="headers"
-            @change="fileHandleChange"
+            @change="handleChange"
           >
             <a-button> <a-icon type="upload" /> 上传 </a-button>
           </a-upload>
@@ -199,8 +199,7 @@ export default {
   
 
   methods: {
-    fileHandleChange(info) {
-		this.solveformData()
+    handleChange(info) {
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
@@ -258,6 +257,12 @@ export default {
   line-height: 1.5;
 }
 
+.ant-upload-list,
+.ant-upload-list-text {
+  display: none;
+  // position: absolute;
+  // top: 14px;
+}
 
 // /deep/ .ant-table-tbody > tr > td {
 //   padding-top: 10px;
