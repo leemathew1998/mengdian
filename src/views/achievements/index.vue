@@ -157,6 +157,7 @@
 		flex-direction: column;
 
 		.form {
+			// flex: 1;
 			// width: 90%;
 			margin: 10px 0;
 		}

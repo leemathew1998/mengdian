@@ -132,7 +132,8 @@
 
 			.ant-menu-item {
 				// flex: 1;
-				height: 100px;
+				// 修改由于权限问题导致的菜单高度变化
+				height: 90px;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-around;
