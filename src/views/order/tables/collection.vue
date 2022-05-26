@@ -8,7 +8,7 @@
             :multiple="true"
             action="http://10.168.4.233:8888/excel/upload"
             :headers="headers"
-            @change="handleChange"
+            @change="fileHandleChange"
           >
             <a-button> <a-icon type="upload" /> 上传 </a-button>
           </a-upload>
@@ -184,8 +184,8 @@ export default {
       selectItem: {},
       clickRow: {},
       tableLoading: false,
-	  headers: {
-        authorization: 'authorization-text',
+      headers: {
+        authorization: "authorization-text",
       },
     };
   },
@@ -196,16 +196,16 @@ export default {
     SearchForm,
   },
   computed: {},
-  
 
   methods: {
-    handleChange(info) {
-      if (info.file.status !== 'uploading') {
+        fileHandleChange(info) {
+        this.solveformData()
+      if (info.file.status !== "uploading") {
         console.log(info.file, info.fileList);
       }
-      if (info.file.status === 'done') {
+      if (info.file.status === "done") {
         this.$message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
+      } else if (info.file.status === "error") {
         this.$message.error(`${info.file.name} file upload failed.`);
       }
     },
@@ -257,12 +257,7 @@ export default {
   line-height: 1.5;
 }
 
-.ant-upload-list,
-.ant-upload-list-text {
-  display: none;
-  // position: absolute;
-  // top: 14px;
-}
+
 
 // /deep/ .ant-table-tbody > tr > td {
 //   padding-top: 10px;
