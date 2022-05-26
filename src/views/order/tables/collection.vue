@@ -160,9 +160,6 @@
 				selectItem: {},
 				clickRow: {},
 				tableLoading: false,
-				headers: {
-					authorization: "authorization-text",
-				},
 			};
 		},
 		components: {

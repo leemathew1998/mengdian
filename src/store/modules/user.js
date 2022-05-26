@@ -118,6 +118,8 @@ const user = {
 			return new Promise((resolve, reject) => {
 				login(userInfo).then(response => {
 					// console.log(response)
+					// 此处需要设置权限，现在没有登录就在permission文件内设置吧！
+					// commit('SET_ROLE', 'admin')
 					if (response.code == '200') {
 						const result = response.result
 						const userInfo = result.userInfo

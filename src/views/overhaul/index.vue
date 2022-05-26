@@ -45,8 +45,8 @@
 		importFile
 	} from '@/api/api'
 	import {
-		uploadFile
-	} from '@api/DFZT'
+		postAction
+	} from '@api/manage'
 	const columns = [{
 			title: "生成时间",
 			dataIndex: "a",
@@ -137,9 +137,9 @@
 				if (info.file.status !== 'uploading') {
 					console.log(info.file, info.fileList);
 					let formData = new FormData()
-					formData.append('files', info.file.originFileObj)
-					const res = await uploadFile(formData)
-					console.log(res.data);
+					formData.append('file', info.file.originFileObj)
+					const res = await postAction('/excel/upload',formData)
+					// console.log(res.data);
 				}
 				if (info.file.status === 'done') {
 					this.$message.success(`${info.file.name} file uploaded successfully`);
@@ -147,32 +147,6 @@
 					this.$message.error(`${info.file.name} file upload failed.`);
 				}
 			},
-			// handleFileChange(info) {
-			// 	if (info.file.status !== 'uploading') {
-			// 		this.readFile(info.file.originFileObj)
-			// 	}
-			// },
-			// readFile(file) {
-			// 	let that = this;
-			// 	let reader = new FileReader();
-			// 	reader.onload = function(e) {
-			// 		let wb = XLSX.read(e.target.result, {
-			// 			type: "binary"
-			// 		}); // 读取文件
-			// 		let wbSheetName = wb.SheetNames[0];
-			// 		const wbSheet = wb.Sheets[wbSheetName];
-			// 		let selectFileData = XLSX.utils.sheet_to_json(wbSheet, {
-			// 			defval: ""
-			// 		});
-			// 		for (let i = 0; i < selectFileData.length; i++) {
-			// 			delete selectFileData[i].__EMPTY;
-			// 		}
-			// 		let data = JSON.stringify(selectFileData);
-			// 		// alert(data);
-			// 		console.log(data)
-			// 	};
-			// 	reader.readAsBinaryString(file);
-			// },
 
 			changeSelectedRowKeys(e) {
 				this.selectedRowKeys = e;

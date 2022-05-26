@@ -50,7 +50,6 @@
 				requestCodeSuccess: false,
 				randCodeImage: '',
 				currdatetime: '',
-				loginType: 0,
 				model: {
 					username: '',
 					password: '',
@@ -61,7 +60,7 @@
 						required: true,
 						message: '请输入用户名!'
 					}, {
-						validator: this.handleUsernameOrEmail
+						validator: this.handleUsername
 					}],
 					password: [{
 						required: true,
@@ -99,14 +98,8 @@
 					})
 			},
 			// 判断登录类型
-			handleUsernameOrEmail(rule, value, callback) {
-				const regex = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/
-				if (regex.test(value)) {
-					this.loginType = 0
-				} else {
-					this.loginType = 1
-				}
-				callback()
+			handleUsername(rule, value, callback) {
+				value.length < 5 ? callback('请输入正确的用户名！') : callback()
 			},
 			/**
 			 * 验证字段
@@ -140,7 +133,8 @@
 			},
 			// 账号密码登录
 			handleLogin(rememberMe) {
-				this.validateFields(['username', 'password', 'inputCode'], async(err) => {
+				this.validateFields(['username', 'password', 'inputCode'], async (err) => {
+					console.log('login validate--->', err)
 					if (!err) {
 						let loginParams = {
 							username: this.model.username,
