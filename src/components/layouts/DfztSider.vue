@@ -4,35 +4,35 @@
 			<div class="logo" />
 		</div>
 		<a-menu theme="dark" mode="inline" :selectedKeys="selectedKeys" class="sider_menu" @click="changekeys">
-			<a-menu-item key="/dashboard">
+			<a-menu-item key="/dashboard" v-show="roleControl['/dashboard']">
 				<img src="@/assets/order.svg" alt="" class="svg" />
 				<span>总览</span>
 			</a-menu-item>
-			<a-menu-item key="/order">
+			<a-menu-item key="/order" v-show="roleControl['/order']">
 				<img src="@/assets/order.svg" alt="" class="svg" />
 				<span>业务工单</span>
 			</a-menu-item>
-			<a-menu-item key="/overhaul">
+			<a-menu-item key="/overhaul" v-show="roleControl['/overhaul']">
 				<img src="@/assets/u30.svg" alt="" class="svg" />
 				<span>检修管理</span>
 			</a-menu-item>
-			<a-menu-item key="/antitheft">
+			<a-menu-item key="/antitheft" v-show="roleControl['/antitheft']">
 				<img src="@/assets/u30.svg" alt="" class="svg" />
 				<span>反窃查违</span>
 			</a-menu-item>
-			<a-menu-item key="/extend">
+			<a-menu-item key="/extend" v-show="roleControl['/extend']">
 				<img src="@/assets/u20.svg" alt="" class="svg" />
 				<span>业扩报装</span>
 			</a-menu-item>
-			<a-menu-item key="/achievements">
+			<a-menu-item key="/achievements" v-show="roleControl['/achievements']">
 				<img src="@/assets/u142.svg" alt="" class="svg" />
 				<span>绩效管理</span>
 			</a-menu-item>
-			<a-menu-item key="/collection">
+			<a-menu-item key="/collection" v-show="roleControl['/collection']">
 				<img src="@/assets/u146.svg" alt="" class="svg" />
 				<span>采集数据</span>
 			</a-menu-item>
-			<a-menu-item key="/basic">
+			<a-menu-item key="/basic" v-show="roleControl['/basic']">
 				<img src="@/assets/u146.svg" alt="" class="svg" />
 				<span>基础服务</span>
 			</a-menu-item>
@@ -48,10 +48,38 @@
 		data() {
 			return {
 				collapsed: false,
-				selectedKeys: []
+				selectedKeys: [],
+				roleControl: {
+					'/dashboard': false,
+					'/order': false,
+					'/overhaul': false,
+					'/antitheft': false,
+					'/extend': false,
+					'/achievements': false,
+					'/collection': false,
+					'/basic': false,
+				}
 			};
 		},
+		created() {
+			const role = this.$store.getters.role
 
+			const nowRouter = this.$router.getRoutes()
+			nowRouter.forEach((item) => {
+				if (['/dashboard', '/order', '/overhaul', '/antitheft', '/extend',
+						'/achievements', '/collection', '/basic'
+					].indexOf(item.path) != -1) {
+
+					if (item.meta.roles.includes(role)) {
+						this.roleControl[item.path] = true
+
+					} else {
+						this.roleControl[item.path] = false
+
+					}
+				}
+			})
+		},
 		mounted() {
 			const path = this.$route.path.split('/')
 			this.selectedKeys = ['/' + path[1]]

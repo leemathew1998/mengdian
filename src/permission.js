@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
 		next()
 	} else {
 		// if (!store.getters.token) {
-			console.log(store.getters.role)
+		// console.log(store.getters.role)
 		// 	console.log('该用户未登录，应该重定向到登录界面！')
 		// 此处处理权限问题，当用户未登录时，应该redirect到/user/login，登录的同时确定好用户的权限，例如role:1；
 		// 然后再login界面重新addrouter配置，等后端完成后此处代码应该放置在/user/login下！
@@ -32,12 +32,6 @@ router.beforeEach((to, from, next) => {
 				path: "/404"
 			}) //跳到404页面
 		}
-		// store.commit('SET_TOKEN', 'haslogin')
-
-		// } else {
-		// 	console.log('欢迎登录！', store.getters.token)
-		// }
-		next()
 	}
 
 
