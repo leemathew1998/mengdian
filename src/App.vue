@@ -9,6 +9,7 @@
 import zhCN from "ant-design-vue/lib/locale-provider/zh_CN";
 import enquireScreen from "@/utils/device";
 
+
 export default {
   name: "APP",
   data() {
